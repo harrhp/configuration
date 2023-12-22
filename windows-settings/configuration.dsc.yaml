@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  resources:
+    - resource: Microsoft.Windows.Developer/TaskBarAlignment
+      directives:
+        allowPrerelease: true
+      settings:
+        Alignment: Left
+    - resource: Microsoft.Windows.Developer/ShowSecondsInClock
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+    - resource: Microsoft.Windows.Developer/HideFileExtensions
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+    - resource: Microsoft.Windows.Developer/ShowTaskViewButton
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+    - resource: Microsoft.Windows.Developer/ShowHiddenFiles
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+    - resource: Microsoft.Windows.Developer/HideTaskBarLabels
+      directives:
+        allowPrerelease: true
+      settings:
+        HideLabels: Always
+        RestartExplorer: true
+    - resource: Microsoft.Windows.Developer/EnableDarkMode
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        RestartExplorer: true
+  configurationVersion: 0.2.0

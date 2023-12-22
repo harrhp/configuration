@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  assertions:
+    - resource: Microsoft.Windows.Developer/OsVersion
+      directives:
+        allowPrerelease: true
+      settings:
+        MinVersion: "10.0.22631"
+  resources:
+    - resource: DSCR_FileContent/IniFile
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Path: "~/.wslconfig"
+        Section: experimental
+        Key: autoMemoryReclaim
+        Value: dropcache
+        NewLine: LF
+    - resource: DSCR_FileContent/IniFile
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Path: "~/.wslconfig"
+        Section: experimental
+        Key: sparseVhd
+        Value: "true"
+        NewLine: LF
+  configurationVersion: 0.2.0

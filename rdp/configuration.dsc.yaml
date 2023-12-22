@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  resources:
+    - resource: ComputerManagementDsc/RemoteDesktopAdmin
+      directives:
+        allowPrerelease: true
+      settings:
+        IsSingleInstance: yes
+        Ensure: Present
+        UserAuthentication: Secure
+    - resource: NetworkingDsc/Firewall
+      directives:
+        allowPrerelease: true
+      settings:
+        Name: RemoteDesktop-Shadow-In-TCP
+        Enabled: True
+        Ensure: Present
+    - resource: NetworkingDsc/Firewall
+      directives:
+        allowPrerelease: true
+      settings:
+        Name: RemoteDesktop-UserMode-In-TCP
+        Enabled: True
+        Ensure: Present
+    - resource: NetworkingDsc/Firewall
+      directives:
+        allowPrerelease: true
+      settings:
+        Name: RemoteDesktop-UserMode-In-UDP
+        Enabled: True
+        Ensure: Present
+  configurationVersion: 0.2.0

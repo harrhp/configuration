@@ -1,0 +1,114 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  resources:
+    - resource: DSCR_FileContent/IniFile
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Path: "~/.gitconfig"
+        Section: core
+        Key: autocrlf
+        Value: "true"
+        NewLine: LF
+    - resource: DSCR_FileContent/IniFile
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Path: "~/.gitconfig"
+        Section: core
+        Key: longpaths
+        Value: "true"
+        NewLine: LF
+    - resource: DSCR_FileContent/IniFile
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Path: "~/.gitconfig"
+        Section: core
+        Key: editor
+        Value: code --wait
+        NewLine: LF
+    - resource: DSCR_FileContent/IniFile
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Path: "~/.gitconfig"
+        Section: user
+        Key: name
+        Value: harrhp
+        NewLine: LF
+    - resource: DSCR_FileContent/IniFile
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Path: "~/.gitconfig"
+        Section: user
+        Key: email
+        Value: <>
+        NewLine: LF
+    - resource: DSCR_FileContent/IniFile
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Path: "~/.gitconfig"
+        Section: diff
+        Key: tool
+        Value: vscode
+        NewLine: LF
+    - resource: DSCR_FileContent/IniFile
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Path: "~/.gitconfig"
+        Section: difftool "vscode"
+        Key: cmd
+        Value: code --wait --diff $LOCAL $REMOTE
+        NewLine: LF
+    - resource: DSCR_FileContent/IniFile
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Path: "~/.gitconfig"
+        Section: merge
+        Key: tool
+        Value: vscode
+        NewLine: LF
+    - resource: DSCR_FileContent/IniFile
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Path: "~/.gitconfig"
+        Section: merge
+        Key: guitool
+        Value: vscode
+        NewLine: LF
+    - resource: DSCR_FileContent/IniFile
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Path: "~/.gitconfig"
+        Section: mergetool "vscode"
+        Key: cmd
+        Value: code --wait $MERGED
+        NewLine: LF
+    - resource: DSCR_FileContent/IniFile
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Path: "~/.gitconfig"
+        Section: init
+        Key: defaultBranch
+        Value: main
+        NewLine: LF
+  configurationVersion: 0.2.0
