@@ -1,0 +1,9 @@
+# These settings are synced to GitHub by https://probot.github.io/apps/settings
+
+_extends: .github
+
+repository:
+  visibility: public
+  has_issues: false
+  has_projects: false
+  has_wiki: false

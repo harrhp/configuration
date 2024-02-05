@@ -26,7 +26,7 @@ properties:
         Ensure: Present
         Path: "~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1"
         Contents: |
-          $env:ALIAE_CONFIG = "https://raw.githubusercontent.com/harrhp/settings/HEAD/shell/aliae.yaml";
+          $env:ALIAE_CONFIG = "https://raw.githubusercontent.com/harrhp/configuration/HEAD/shell/aliae.yaml";
           aliae init pwsh | Invoke-Expression
         NewLine: LF
   configurationVersion: 0.2.0

@@ -1,0 +1,27 @@
+[core]
+autocrlf=true
+longpaths=true
+editor=code --wait
+
+[user]
+name=harrhp
+email=<>
+
+[diff]
+tool=vscode
+
+[difftool "vscode"]
+cmd=code --wait --diff $LOCAL $REMOTE
+
+[merge]
+tool=vscode
+guitool=vscode
+
+[mergetool "vscode"]
+cmd=code --wait $MERGED
+
+[init]
+defaultBranch=main
+
+[includeIf "gitdir:~/**/work/"]
+path = ~/.work.gitconfig
