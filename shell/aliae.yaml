@@ -94,3 +94,7 @@ alias:
   - name: sync-fork
     value: "!git fetch upstream $(git db) && git checkout $(git db) && git merge upstream/$(git db)"
     type: git
+  - name: grep
+    value: findstr
+    type: command
+    if: match .OS "windows"
