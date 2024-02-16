@@ -33,6 +33,7 @@ script:
 path:
   - value: |
       {{ .Home }}{{ if eq .OS "windows" }}\{{ else }}/{{ end }}bin
+    persist: true
 alias:
   - name: p
     value: push origin HEAD
