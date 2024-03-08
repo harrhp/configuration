@@ -15,18 +15,23 @@ env:
 script:
   - value: |
       oh-my-posh init pwsh | Invoke-Expression
-      Set-PSReadLineOption -BellStyle None -PredictionViewStyle ListView;
+      Set-PSReadLineOption -BellStyle None -PredictionViewStyle ListView -EditMode Windows;
       Remove-Alias -Name h -ErrorAction SilentlyContinue;
-      $env:Path = @($env:Path) + (Get-ChildItem -Path $env:LOCALAPPDATA\Microsoft\WinGet\Links\ | select -ExpandProperty Target | Split-Path -Parent | select -Unique) | Join-String -Separator ";"
     if: match .Shell "pwsh"
   - value: |
-      eval "$(oh-my-posh init bash)"
-    if: match .Shell "bash"
+      $env:Path = @($env:Path) + (Get-ChildItem -Path $env:LOCALAPPDATA\Microsoft\WinGet\Links\ | select -ExpandProperty Target | Split-Path -Parent | select -Unique) | Join-String -Separator ";"
+    if: and (match .OS "windows") (match .Shell "pwsh")
+  - value: |
+      Remove-Alias -Name echo -ErrorAction SilentlyContinue;
+    if: and (match .OS "linux") (match .Shell "pwsh")
 path:
   - value: |
       {{ .Home }}{{ if eq .OS "windows" }}\{{ else }}/{{ end }}bin
     persist: true
 alias:
+  - name: g
+    value: git
+    type: command
   - name: p
     value: push origin HEAD
     type: git
@@ -88,10 +93,13 @@ alias:
     value: add .
     type: git
   - name: c
-    value: "!f(){ git commit -m $1; }; f"
+    value: '!f(){ git commit -m "$1"; }; f'
     type: git
   - name: ca
     value: commit --amend --no-edit
+    type: git
+  - name: caa
+    value: "!git add . && git commit --amend --no-edit"
     type: git
   - name: cae
     value: commit --amend
@@ -114,10 +122,10 @@ alias:
   - name: grep
     value: Select-String
     type: command
-    if: match .OS "windows"
+    if: and (match .OS "windows") (match .Shell "pwsh")
   - name: Kek
     type: function
-    if: match .Shell "pwsh"
+    if: and (match .OS "windows") (match .Shell "pwsh")
     value: |
       $wshell = New-Object -ComObject wscript.shell;
       while ($true) {
@@ -128,4 +136,8 @@ alias:
   - name: h
     type: function
     if: match .Shell "pwsh"
-    value: Get-Content (Get-PSReadlineOption).HistorySavePath
+    value: Get-Content -Path (Get-PSReadlineOption).HistorySavePath @args
+  - name: la
+    type: function
+    if: and (match .OS "linux") (match .Shell "pwsh")
+    value: ls -lA $args

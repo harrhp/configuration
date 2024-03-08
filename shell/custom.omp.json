@@ -2,6 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "palette": {
     "os-icon": "#ffffff",
+    "shell": "#ffffff",
     "text": "lightWhite",
     "username": "cyan",
     "hostname": "lightCyan",
@@ -27,6 +28,12 @@
           "style": "plain",
           "template": "{{ .Icon }} ",
           "type": "os"
+        },
+        {
+          "foreground": "p:shell",
+          "style": "plain",
+          "template": "{{ .Shell }} ",
+          "type": "text"
         },
         {
           "style": "plain",
