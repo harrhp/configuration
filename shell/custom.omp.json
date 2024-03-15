@@ -55,7 +55,7 @@
             "fetch_upstream_icon": true
           },
           "style": "plain",
-          "template": "<p:text>git </>{{ .UpstreamIcon }}{{.HEAD}} {{if .BranchStatus }}{{ .BranchStatus }} {{ end }}{{ if .Working.Changed }}<p:git-unstaged>\uf044 {{ .Working.String }}</> {{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }}| {{ end }}{{ if .Staging.Changed }}<p:git-staged>\uf046 {{ .Staging.String }}</> {{ end }}",
+          "template": "<p:text>git </>{{ .UpstreamIcon }} {{.HEAD}} {{if .BranchStatus }}{{ .BranchStatus }} {{ end }}{{ if .Working.Changed }}<p:git-unstaged>\uf044 {{ .Working.String }}</> {{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }}| {{ end }}{{ if .Staging.Changed }}<p:git-staged>\uf046 {{ .Staging.String }}</> {{ end }}",
           "type": "git"
         },
         {
