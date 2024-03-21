@@ -29,9 +29,16 @@ path:
       {{ .Home }}{{ if eq .OS "windows" }}\{{ else }}/{{ end }}bin
     persist: true
 alias:
+  # command
   - name: g
     value: git
     type: command
+  - name: grep
+    value: Select-String
+    type: command
+    if: and (match .OS "windows") (match .Shell "pwsh")
+
+  # git
   - name: p
     value: push origin HEAD
     type: git
@@ -71,20 +78,26 @@ alias:
   - name: dns
     value: diff --numstat
     type: git
-  - name: co
-    value: checkout
+  - name: sw
+    value: switch
     type: git
-  - name: codb
-    value: "!git checkout $(git db)"
+  - name: swdb
+    value: "!git switch $(git db)"
     type: git
-  - name: cob
-    value: checkout -b
+  - name: swc
+    value: switch -c
+    type: git
+  - name: swf
+    value: '!f() { git switch -c "$1" "$(git db)"; }; f'
     type: git
   - name: z
-    value: "!git checkout . && git clean -fd"
+    value: "!git restore . && git clean -fd"
     type: git
   - name: zs
-    value: "!git z && git reset --hard"
+    value: "!git restore --worktree --staged . && git clean -fd"
+    type: git
+  - name: zn
+    value: clean -fd
     type: git
   - name: a
     value: add
@@ -93,7 +106,7 @@ alias:
     value: add .
     type: git
   - name: c
-    value: '!f(){ git commit -m "$1"; }; f'
+    value: "!git commit -m"
     type: git
   - name: ca
     value: commit --amend --no-edit
@@ -114,15 +127,13 @@ alias:
     value: log --graph --pretty=format:"%C(bold red)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold yellow)<%an>%Creset" --abbrev-commit --date=relative
     type: git
   - name: sync-fork
-    value: "!git fetch upstream $(git db) && git checkout $(git db) && git merge upstream/$(git db)"
+    value: "!git fetch upstream $(git db) && git switch $(git db) && git merge upstream/$(git db)"
     type: git
   - name: x
     value: "update-index --chmod=+x"
     type: git
-  - name: grep
-    value: Select-String
-    type: command
-    if: and (match .OS "windows") (match .Shell "pwsh")
+
+  # function
   - name: Kek
     type: function
     if: and (match .OS "windows") (match .Shell "pwsh")
@@ -145,3 +156,7 @@ alias:
     type: function
     if: and (match .OS "linux") (match .Shell "pwsh")
     value: ls -lA $args
+  - name: touch
+    value: "((Test-Path $args[0] -PathType Leaf) ? ((Get-Item $args[0]).LastWriteTime = Get-Date) : (New-Item $args[0])) | Out-Null"
+    type: function
+    if: and (match .OS "windows") (match .Shell "pwsh")
