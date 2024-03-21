@@ -137,6 +137,10 @@ alias:
     type: function
     if: match .Shell "pwsh"
     value: Get-Content -Path (Get-PSReadlineOption).HistorySavePath @args
+  - name: hopen
+    type: function
+    if: match .Shell "pwsh"
+    value: "& (Get-PSReadlineOption).HistorySavePath"
   - name: la
     type: function
     if: and (match .OS "linux") (match .Shell "pwsh")
