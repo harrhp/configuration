@@ -79,6 +79,11 @@ install() {
 
   if is_wsl ; then
     log "running in wsl"
+
+    sudo add-apt-repository -y ppa:wslutilities/wslu
+    sudo apt update
+    sudo apt install -y wslu
+
     ensureWinExeSymlink ssh.exe $BIN/wssh
   fi
 }
