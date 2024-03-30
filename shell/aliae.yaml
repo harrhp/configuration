@@ -24,6 +24,14 @@ script:
   - value: |
       Remove-Alias -Name echo -ErrorAction SilentlyContinue;
     if: and (match .OS "linux") (match .Shell "pwsh")
+  - value: |
+      if ($env:WSL_DISTRO_NAME) {
+        if(!(Get-Process | Where-Object -Property CommandLine -Like "/usr/bin/dbus-daemon*"))
+        {
+          dbus-launch true;
+        }
+      }
+    if: and (match .OS "linux") (match .Shell "pwsh")
 path:
   - value: |
       {{ .Home }}{{ if eq .OS "windows" }}\{{ else }}/{{ end }}bin
