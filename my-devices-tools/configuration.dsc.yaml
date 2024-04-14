@@ -5,12 +5,6 @@ properties:
       directives:
         allowPrerelease: true
       settings:
-        id: Docker.DockerDesktop
-        source: winget
-    - resource: Microsoft.WinGet.DSC/WinGetPackage
-      directives:
-        allowPrerelease: true
-      settings:
         id: Mikrotik.Winbox
         source: winget
     - resource: Microsoft.WinGet.DSC/WinGetPackage

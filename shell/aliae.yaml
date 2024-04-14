@@ -9,6 +9,10 @@ env:
     value: GIT_SSH/p
     persist: true
     if: match .OS "windows"
+  - name: DOCKER_HOST
+    value: tcp://localhost:2375
+    persist: true
+    if: match .OS "windows"
   - name: BROWSER
     value: wslview
     if: hasCommand "wslview"
