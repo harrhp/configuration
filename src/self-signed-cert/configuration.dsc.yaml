@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  resources:
+    - resource: CertificateDsc/CertificateImport
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Thumbprint: "75f5caebf2b81d953b56f8dd8430f39978214977"
+        Location: LocalMachine
+        Store: Root
+        Path: ${WingetConfigRoot}/../../files/root-ca.crt
+  configurationVersion: 0.2.0

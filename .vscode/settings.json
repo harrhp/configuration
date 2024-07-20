@@ -1,0 +1,6 @@
+{
+  "search.exclude": {
+    "**/FileContentDsc": true,
+    "**/GPRegistryPolicyDsc": true
+  }
+}

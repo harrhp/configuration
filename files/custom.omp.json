@@ -1,0 +1,106 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "palette": {
+    "os-icon": "#ffffff",
+    "shell": "#ffffff",
+    "text": "lightWhite",
+    "username": "cyan",
+    "hostname": "lightCyan",
+    "path": "#b4e77a",
+    "time": "darkGray",
+    "error-code": "lightRed",
+    "success-code": "lightGreen",
+    "git": "lightBlue",
+    "git-ahead": "#2EC4B6",
+    "git-behind": "#8A4FFF",
+    "git-dirty": "#ffeb3b",
+    "git-unstaged": "#E84855",
+    "git-staged": "#2FDA4E",
+    "prompt-symbol": "lightRed"
+  },
+  "blocks": [
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "p:os-icon",
+          "style": "plain",
+          "template": "{{ .Icon }} ",
+          "type": "os"
+        },
+        {
+          "foreground": "p:shell",
+          "style": "plain",
+          "template": "{{ .Shell }} ",
+          "type": "text"
+        },
+        {
+          "style": "plain",
+          "template": "{{ if .SSHSession }}ssh {{ end }}<p:username>{{ .UserName }}</>@<p:hostname>{{ .HostName }}</> ",
+          "type": "session"
+        },
+        {
+          "style": "plain",
+          "properties": {
+            "style": "full"
+          },
+          "template": "<p:text>in</> <p:path>{{ path .Path .Location }}</> ",
+          "type": "path"
+        },
+        {
+          "foreground": "p:git",
+          "properties": {
+            "fetch_status": true,
+            "fetch_upstream_icon": true
+          },
+          "style": "plain",
+          "template": "<p:text>git </>{{ .UpstreamIcon }} {{.HEAD}} {{if .BranchStatus }}{{ .BranchStatus }} {{ end }}{{ if .Working.Changed }}<p:git-unstaged>\uf044 {{ .Working.String }}</> {{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }}| {{ end }}{{ if .Staging.Changed }}<p:git-staged>\uf046 {{ .Staging.String }}</> {{ end }}",
+          "type": "git"
+        },
+        {
+          "style": "plain",
+          "template": "\u231B{{ .FormattedMs }} ",
+          "type": "executiontime",
+          "properties": {
+            "always_enabled": true,
+            "style": "austin"
+          }
+        },
+        {
+          "foreground_templates": [
+            "{{ if gt .Code 0 }}p:error-code{{else}}p:success-code{{ end }}"
+          ],
+          "style": "plain",
+          "template": "{{ if gt .Code 0 }}\uF00D {{ .Code }} {{ reason .Code }}{{ else }}\uF00C{{ end }} ",
+          "type": "status",
+          "properties": {
+            "always_enabled": true
+          }
+        },
+        {
+          "foreground": "p:time",
+          "style": "plain",
+          "template": "[{{ .CurrentDate | date .Format }}] ",
+          "type": "time"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "p:prompt-symbol",
+          "style": "plain",
+          "template": "{{if .Root}}#{{else}}${{end}}",
+          "type": "text"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "final_space": true,
+  "version": 2
+}

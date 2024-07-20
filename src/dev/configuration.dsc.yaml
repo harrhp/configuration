@@ -1,0 +1,47 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  resources:
+    - resource: Microsoft.Windows.Developer/DeveloperMode
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        allowPrerelease: true
+      settings:
+        id: Microsoft.VisualStudioCode
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        allowPrerelease: true
+      settings:
+        id: JetBrains.Toolbox
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        allowPrerelease: true
+      settings:
+        id: Microsoft.WSL
+        source: winget
+    - resource: DSCR_FileContent/IniFile
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Path: "~/.wslconfig"
+        Section: experimental
+        Key: autoMemoryReclaim
+        Value: dropcache
+        NewLine: LF
+    - resource: DSCR_FileContent/IniFile
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Path: "~/.wslconfig"
+        Section: experimental
+        Key: sparseVhd
+        Value: "true"
+        NewLine: LF
+  configurationVersion: 0.2.0

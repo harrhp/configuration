@@ -1,0 +1,660 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  resources:
+    ## system
+    # notifications
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable get tips and suggestions
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager
+        ValueName: SubscribedContent-338389Enabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable show windows welcome experience
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager
+        ValueName: SubscribedContent-310093Enabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    # activation
+    - resource: xPSDesiredStateConfiguration/xScript
+      directives:
+        description: activate
+        allowPrerelease: true
+      settings:
+        GetScript: "state"
+        TestScript: |
+          $licenseStatus = Get-CimInstance SoftwareLicensingProduct -Filter "Name like 'Windows%'" | where { $_.PartialProductKey } | select -ExpandProperty LicenseStatus
+          $licenseStatus -eq 1
+        SetScript: |
+          & ([ScriptBlock]::Create((Invoke-RestMethod https://get.activated.win))) /KMS38
+    # rdp
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: enable rdp
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services
+        ValueName: fDenyTSConnections
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: ComputerManagementDsc/RemoteDesktopAdmin
+      directives:
+        description: enable rdp network level authentication
+        allowPrerelease: true
+      settings:
+        IsSingleInstance: yes
+        Ensure: Present
+        UserAuthentication: Secure
+    - resource: NetworkingDsc/Firewall
+      directives:
+        description: enable rdp firewall rule
+        allowPrerelease: true
+      settings:
+        Name: RemoteDesktop-Shadow-In-TCP
+        Enabled: True
+        Ensure: Present
+    - resource: NetworkingDsc/Firewall
+      directives:
+        description: enable rdp firewall rule
+        allowPrerelease: true
+      settings:
+        Name: RemoteDesktop-UserMode-In-TCP
+        Enabled: True
+        Ensure: Present
+    - resource: NetworkingDsc/Firewall
+      directives:
+        description: enable rdp firewall rule
+        allowPrerelease: true
+      settings:
+        Name: RemoteDesktop-UserMode-In-UDP
+        Enabled: True
+        Ensure: Present
+    ## devices
+    # printers
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: let windows manage default printer
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        Key: HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Windows
+        ValueName: LegacyDefaultPrinterMode
+    ## network
+    # dns
+    - resource: MyResources/DohServerTemplate
+      directives:
+        description: setup doh template
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        ServerAddress: 192.168.2.2
+        DohTemplate: https://dns.skobka.xyz/dns-query
+        AutoUpgrade: true
+    ## personaliztion
+    # background
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable ads on lock screen
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel
+        ValueName: "{2cc5ca98-6485-489a-920e-b3e88a6ccce3}"
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    # colors
+    - resource: Microsoft.Windows.Developer/EnableDarkMode
+      directives:
+        description: light mode
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        RestartExplorer: true
+    # lock screen
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable ads on lock screen
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager
+        ValueName: RotatingLockScreenOverlayEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable ads on lock screen
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager
+        ValueName: SubscribedContent-338387Enabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable lock screen status
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Dsh
+        ValueName: AllowNewsAndInterests
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    # start
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: start more pins
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+        ValueName: Start_Layout
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: hide recommended section
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer
+        ValueName: HideRecommendedSection
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable show recently added apps
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer
+        ValueName: HideRecentlyAddedApps
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable show recently opened items
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+        ValueName: Start_TrackDocs
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable show recommendations for tips, new apps
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+        ValueName: Start_IrisRecommendations
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable show account notifications
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+        ValueName: Start_AccountNotifications
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    # taskbar
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: hide copilot button in taskbar
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+        ValueName: ShowCopilotButton
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: Microsoft.Windows.Developer/Taskbar
+      directives:
+        description: taskbar settings
+        allowPrerelease: true
+      settings:
+        Alignment: Left
+        HideLabelsMode: Always
+        SearchBoxMode: Hide
+        TaskViewButton: Hide
+        WidgetsButton: Hide
+        RestartExplorer: True
+    - resource: Microsoft.Windows.Developer/ShowSecondsInClock
+      directives:
+        description: show seconds in clock
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+    # explorer
+    - resource: Microsoft.Windows.Developer/WindowsExplorer
+      directives:
+        description: configure explorer
+        allowPrerelease: true
+      settings:
+        FileExtensions: Show
+        HiddenFiles: Show
+        ItemCheckBoxes: Hide
+        RestartExplorer: True
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: open explorer to [This PC]
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+        ValueName: LaunchTo
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    ## apps
+    # advanced
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: configure install apps source
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer
+        ValueName: AicEnabled
+        ValueData: Anywhere
+        Force: true
+    ## accounts
+    # sign in options
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable security questions
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\System
+        ValueName: NoLocalPasswordResetQuestions
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    ## time and language
+    - resource: ComputerManagementDsc/TimeZone
+      directives:
+        description: set time zone
+        allowPrerelease: true
+      settings:
+        IsSingleInstance: yes
+        TimeZone: Russian Standard Time
+    - resource: MyResources/WinHomeLocation
+      directives:
+        description: set location
+        allowPrerelease: true
+      settings:
+        GeoId: 177
+    - resource: MyResources/Culture
+      directives:
+        description: regional format
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Name: ru-RU
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable text suggestions
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Software\Microsoft\Input\Settings
+        ValueName: EnableHwkbTextPrediction
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable multilingual text suggestions
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Software\Microsoft\Input\Settings
+        ValueName: MultilingualEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable typing insights
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Software\Microsoft\Input\Settings
+        ValueName: InsightsEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable text suggestions
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\SOFTWARE\Microsoft\TabletTip\1.7
+        ValueName: EnableAutocorrection
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable text suggestions
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\SOFTWARE\Microsoft\TabletTip\1.7
+        ValueName: EnableSpellchecking
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    ## privacy and security
+    # general
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable personalized ads
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\AdvertisingInfo
+        ValueName: DisabledByGroupPolicy
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable website access to language list
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\User Profile
+        ValueName: HttpAcceptLanguageOptOut
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable tracking app launches
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\EdgeUI
+        ValueName: DisableMFUTracking
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable suggested content in settings
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager
+        ValueName: SubscribedContent-338393Enabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable suggested content in settings
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager
+        ValueName: SubscribedContent-353694Enabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable suggested content in settings
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager
+        ValueName: SubscribedContent-353696Enabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    # speech
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable online speech recognition
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\InputPersonalization
+        ValueName: AllowInputPersonalization
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    # inking and typing
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable custom inking and typing dictionary
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Software\Microsoft\Windows\CurrentVersion\CPSS\Store\InkingAndTypingPersonalization
+        ValueName: Value
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable custom inking and typing dictionary
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Software\Microsoft\Personalization\Settings
+        ValueName: AcceptedPrivacyPolicy
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable custom inking and typing dictionary
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Software\Microsoft\InputPersonalization
+        ValueName: RestrictImplicitInkCollection
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable custom inking and typing dictionary
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Software\Microsoft\InputPersonalization
+        ValueName: RestrictImplicitTextCollection
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable custom inking and typing dictionary
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Software\Microsoft\InputPersonalization\TrainedDataStore
+        ValueName: HarvestContacts
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    # diagnostics and feedback
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable diagnostic data
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection
+        ValueName: AllowTelemetry
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable improve inking and typing
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\TextInput
+        ValueName: AllowLinguisticDataCollection
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable tailored experience
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Software\Policies\Microsoft\Windows\CloudContent
+        ValueName: DisableTailoredExperiencesWithDiagnosticData
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable diagnostic data viewer
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection
+        ValueName: DisableDiagnosticDataViewer
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable feedback
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection
+        ValueName: DoNotShowFeedbackNotifications
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    # activity history
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable feedback
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\System
+        ValueName: PublishUserActivities
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    # search web
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable safe search
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SearchSettings
+        ValueName: SafeSearchMode
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable cloud search
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search
+        ValueName: AllowCloudSearch
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable web search
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search
+        ValueName: DisableWebSearch
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable web search
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search
+        ValueName: ConnectedSearchUseWeb
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable search history
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Software\Microsoft\Windows\CurrentVersion\SearchSettings
+        ValueName: IsDeviceSearchHistoryEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable show search highlights
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search
+        ValueName: EnableDynamicContentInWSB
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    # permissions
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: turn off location
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\location
+        ValueName: Value
+        ValueData: Deny
+        Force: true
+  configurationVersion: 0.2.0

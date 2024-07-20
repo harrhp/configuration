@@ -1,0 +1,109 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  resources:
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        allowPrerelease: true
+      settings:
+        id: Notepad++.Notepad++
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        allowPrerelease: true
+      settings:
+        id: "7zip.7zip"
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        allowPrerelease: true
+      settings:
+        id: gerardog.gsudo
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        allowPrerelease: true
+      settings:
+        id: AntibodySoftware.WizTree
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: git
+      directives:
+        allowPrerelease: true
+      settings:
+        id: Git.Git
+        source: winget
+    - resource: MyResources/File
+      directives:
+        description: configure git
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        SourcePath: ${WingetConfigRoot}/../../files/.gitconfig
+        DestinationPath: ~/.gitconfig
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: ohmyposh
+      directives:
+        allowPrerelease: true
+      settings:
+        id: JanDeDobbeleer.OhMyPosh
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: aliae
+      directives:
+        allowPrerelease: true
+      settings:
+        id: JanDeDobbeleer.Aliae
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: pwsh
+      directives:
+        allowPrerelease: true
+      settings:
+        id: Microsoft.PowerShell
+        source: winget
+    - resource: MyResources/File
+      directives:
+        description: configure pwsh profile
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        SourcePath: ${WingetConfigRoot}/../../files/Microsoft.PowerShell_profile.ps1
+        DestinationPath: ~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1
+    - resource: xPSDesiredStateConfiguration/xScript
+      directives:
+        description: reload path
+        allowPrerelease: true
+      settings:
+        GetScript: "state"
+        TestScript: $false
+        SetScript: $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User");
+    - resource: xPSDesiredStateConfiguration/xScript
+      directives:
+        description: install fonts
+        allowPrerelease: true
+      settings:
+        GetScript: "state"
+        TestScript: $false
+        SetScript: oh-my-posh font install CascadiaCode
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: wt
+      directives:
+        allowPrerelease: true
+      settings:
+        id: Microsoft.WindowsTerminal
+        source: winget
+    - resource: MyResources/File
+      directives:
+        description: configure windows terminal
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        SourcePath: ${WingetConfigRoot}/../../files/windows-terminal-settings.json
+        DestinationPath: ~/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        allowPrerelease: true
+      settings:
+        id: Microsoft.OpenSSH.Beta
+        source: winget
+  configurationVersion: 0.2.0

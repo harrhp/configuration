@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  resources:
+    - resource: xPSDesiredStateConfiguration/xRemoteFile
+      directives:
+        description: download printer drivers
+        allowPrerelease: true
+      settings:
+        Uri: https://download.support.xerox.com/pub/drivers/3020/drivers/win10/ar/Xerox_Phaser_3020_Windows_Print_Drivers_Utilities_V1.07.exe
+        DestinationPath: ${WingetConfigRoot}/../../tmp/drivers/xeros 3020/drivers.zip
+    # - resource: xPSDesiredStateConfiguration/xRegistry
+    #   directives:
+    #     description: disable lock screen status
+    #     allowPrerelease: true
+    #   settings:
+    #     Ensure: Present
+    #     Name: ExampleTCPIPPrinter
+    #     PortType: TCPIP
+    #     PortName: TCPIP1
+    #     Address: printer.skobka.xyz
+    #     DriverName: fake
+    #     Shared: true
+  configurationVersion: 0.2.0

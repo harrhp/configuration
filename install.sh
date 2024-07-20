@@ -25,18 +25,18 @@ is_wsl() {
 
 install_gitconfig() {
   log "installing gitconfig"
-  cp ./gitconfig/.gitconfig ~/
+  cp ./files/.gitconfig ~/
 }
 
 install_pwsh_profile() {
   log "installing pwsh profile"
   mkdir -p ~/.config/powershell/
-  cp ./pwsh-profile/Microsoft.PowerShell_profile.ps1 $_
+  cp ./files/Microsoft.PowerShell_profile.ps1 $_
 }
 
 install_self_signed_ca() {
   log "installing ca"
-  sudo cp ./self-signed-root-ca/root-ca.crt /usr/local/share/ca-certificates
+  sudo cp ./files/root-ca.crt /usr/local/share/ca-certificates
   sudo update-ca-certificates
 }
 
