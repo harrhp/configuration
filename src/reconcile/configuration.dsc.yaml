@@ -1,0 +1,40 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  resources:
+    - resource: ComputerManagementDsc/ScheduledTask
+      directives:
+        description: add dsc scheduled task
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        TaskName: winget configure
+        ActionExecutable: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+        ActionArguments: fake
+        ScheduleType: Once
+        RepeatInterval: 04:00:00
+        RepetitionDuration: Indefinitely
+        MultipleInstances: IgnoreNew
+        ExecutionTimeLimit: 01:00:00
+        RunOnlyIfIdle: true
+        IdleDuration: 00:05:00
+        IdleWaitTimeout: 00:01:00
+        DontStopOnIdleEnd: true
+        DontStopIfGoingOnBatteries: true
+    - resource: xPSDesiredStateConfiguration/xScript
+      directives:
+        description: fix dsc scheduled task
+        allowPrerelease: true
+      settings:
+        GetScript: state
+        TestScript: $false
+        SetScript: |
+          $params = @{
+            TaskName = "winget configure"
+          };
+
+          $action = (Get-ScheduledTask @params).Actions[0];
+          $action.Arguments = "-ExecutionPolicy Unrestricted -NoProfile -WindowStyle Hidden -Command & ([ScriptBlock]::Create((Invoke-RestMethod https://raw.githubusercontent.com/harrhp/configuration/HEAD/install.ps1))) -Device $env:COMPUTERNAME";
+          $params.Principal = New-ScheduledTaskPrincipal -RunLevel Highest -UserId $env:USERNAME -LogonType Interactive;
+          $params.Action = $action;
+          Set-ScheduledTask @params;
+  configurationVersion: 0.2.0

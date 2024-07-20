@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  resources:
+    - resource: MyResources/Printer
+      directives:
+        description: add printer
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        ConnectionName: \\desktop\Xerox Phaser 3020
+  configurationVersion: 0.2.0
