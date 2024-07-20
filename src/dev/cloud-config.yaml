@@ -1,0 +1,93 @@
+#cloud-config
+
+# yaml-language-server: $schema=https://github.com/canonical/cloud-init/raw/main/cloudinit/config/schemas/schema-cloud-config-v1.json
+
+package_update: true
+package_upgrade: true
+
+# bootcmd:
+# - |
+#   VERSION_ID=$(/usr/bin/bash -c 'source /etc/os-release && echo $VERSION_ID')
+#   wget -q -O /run/packages-microsoft-prod.deb https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb
+#   dpkg -i /run/packages-microsoft-prod.deb
+
+apt:
+  sources:
+    docker.list:
+      source: deb [arch=amd64] https://download.docker.com/linux/ubuntu $RELEASE stable
+      keyid: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+      append: false
+    wslutilities.list:
+      source: ppa:wslutilities/wslu
+      append: false
+
+packages:
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
+  - docker-compose-plugin
+  # - powershell
+  - unzip
+  - wslu
+  - dnsutils
+  - iputils-tracepath
+
+ca_certs:
+  trusted:
+    - |
+      -----BEGIN CERTIFICATE-----
+      MIIDIzCCAgugAwIBAgIUKtf3Zwebq3gHKw8IOUmysanL/FMwDQYJKoZIhvcNAQEL
+      BQAwGTEXMBUGA1UEAxMOU2tvYmthIFJvb3QgQ0EwHhcNMjIxMTAyMTkzMDAxWhcN
+      NDMwNTE2MTkzMDMxWjAZMRcwFQYDVQQDEw5Ta29ia2EgUm9vdCBDQTCCASIwDQYJ
+      KoZIhvcNAQEBBQADggEPADCCAQoCggEBAK+Xo3GB9COqJKfyBkir5h0tjkRVIRRH
+      xI0BWwHiLlg1rXySJBqvH0RyW5pomXEZrFKE76NA8lOO429+W6j77sCd0rnEhUJ1
+      PDoUGSa1PddaCakeDFwHcgo2ymah+4K3Rip6a3cCjStSWnBPHmE2UW4WZAYGXDkF
+      10XSagyyZPHIiLSUoNizlDK6nlWnd3Gc4v55w3OmfGFjwFwG3m0D2dfXYSTCSAnn
+      rD8HkgEEgrEvUXx7CcfC/9YDqRIepPVFGLIOrrr/uro+PLLVbn6V7c771qA5IyCQ
+      bJRW5ePWyjtNmy5C2vM7DSavrvdG6cWeHNR5evn7ATs7Yv4sek7wHhMCAwEAAaNj
+      MGEwDgYDVR0PAQH/BAQDAgEGMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFLnp
+      RU3vDkJx5EjLKF9fj3WB91jVMB8GA1UdIwQYMBaAFLnpRU3vDkJx5EjLKF9fj3WB
+      91jVMA0GCSqGSIb3DQEBCwUAA4IBAQB7zJI+Uz/PlxGo9kkFdRjodYuE5pEerzRr
+      Ji3nk4gHhj+UOv/5d+bquNTZyeDdaXcgEtrN8pOcWKg/o6yPypkAT2mqgPtn1zZu
+      SKx2dzwwE3P4/DNucNDdNwAXCazxXcnZr5x8Cofg1Dt4YxxS7pcwYHDVdhhWSYmR
+      Yxxp+xre75NBZw2BAb+dfd57wZGOg5s6auFOsIEel9MjDNCmo5PQ+n+KDcrTNOxA
+      6GkuN/zpEfanxroeX+tL/Db+XaaSk1fG8V+sd/MH03I1FlUqNnwVKckd45dWNkin
+      vEbr4qMJUmC3KEapUzvxpt+Fq15MaH1nS7tRfPYNuOK6xlBpfdUu
+      -----END CERTIFICATE-----
+
+users:
+  - name: skobka
+    groups:
+      - sudo
+      - docker
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/pwsh
+
+write_files:
+  - path: /etc/wsl.conf
+    content: |
+      [user]
+      default=skobka
+
+      [boot]
+      systemd=true
+  - path: /home/skobka/.config/powershell/Microsoft.PowerShell_profile.ps1
+    source:
+      uri: https://raw.githubusercontent.com/harrhp/configuration/main/files/Microsoft.PowerShell_profile.ps1
+    owner: skobka:skobka
+    defer: true
+  - path: /home/skobka/.gitconfig
+    source:
+      uri: https://raw.githubusercontent.com/harrhp/configuration/main/files/.gitconfig
+    owner: skobka:skobka
+    defer: true
+
+runcmd:
+  - |
+    wget -q -O /run/libicu.deb https://launchpad.net/ubuntu/+archive/primary/+files/libicu70_70.1-2ubuntu1_amd64.deb
+    dpkg -i /run/libicu.deb
+  - |
+    wget -q -O /run/pwsh.deb https://github.com/PowerShell/PowerShell/releases/download/v7.4.5/powershell_7.4.5-1.deb_amd64.deb
+    dpkg -i /run/pwsh.deb
+  - curl -s https://ohmyposh.dev/install.sh | bash -s
+  - curl -s https://aliae.dev/install.sh | bash -s

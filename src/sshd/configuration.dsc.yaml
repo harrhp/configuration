@@ -1,0 +1,82 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  resources:
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: set pwsh as default ssh shell
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\OpenSSH
+        ValueName: DefaultShell
+        ValueData: 'C:\Program Files\PowerShell\7\pwsh.exe'
+        Force: true
+    - resource: FileContentDsc/ReplaceText
+      directives:
+        description: deny ssh connections from localhost
+        allowPrerelease: true
+      settings:
+        Path: C:\ProgramData\ssh\sshd_config
+        Search: Subsystem powershell .*
+        Text: Subsystem powershell c:/progra~1/powershell/7/pwsh.exe -sshs
+        AllowAppend: true
+    - resource: FileContentDsc/ReplaceText
+      directives:
+        description: remove administrators_authorized_keys from sshd config
+        allowPrerelease: true
+      settings:
+        Path: C:\ProgramData\ssh\sshd_config
+        Search: (Match Group administrators(?:\r?\n.*)*?\r?\n)(\s+AuthorizedKeysFile .*)
+    - resource: FileContentDsc/ReplaceText
+      directives:
+        description: deny ssh connections from localhost
+        allowPrerelease: true
+      settings:
+        Path: C:\ProgramData\ssh\sshd_config
+        Search: DenyUsers \*@127\.0\.0\.1
+        Text: DenyUsers *@127.0.0.1
+        AllowAppend: true
+    - resource: FileContentDsc/ReplaceText
+      directives:
+        description: deny ssh connections from localhost
+        allowPrerelease: true
+      settings:
+        Path: C:\ProgramData\ssh\sshd_config
+        Search: DenyUsers \*@::1
+        Text: DenyUsers *@::1
+        AllowAppend: true
+    - resource: FileContentDsc/ReplaceText
+      directives:
+        description: add authorized ssh keys
+        allowPrerelease: true
+      settings:
+        Path: ~/.ssh/authorized_keys
+        Search: (ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMS4esNYZJPqbuGUbfCDUJnv1ao5Ws0MwJ2D9G/72eMe).*
+        Text: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMS4esNYZJPqbuGUbfCDUJnv1ao5Ws0MwJ2D9G/72eMe desktop2
+        AllowAppend: true
+    - resource: FileContentDsc/ReplaceText
+      directives:
+        description: add authorized ssh keys
+        allowPrerelease: true
+      settings:
+        Path: ~/.ssh/authorized_keys
+        Search: (ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ84WNVv/t7imbmDoq9nB5lOUZ74pZ9//P8av2mgnUqE).*
+        Text: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ84WNVv/t7imbmDoq9nB5lOUZ74pZ9//P8av2mgnUqE laptop
+        AllowAppend: true
+    - resource: xPSDesiredStateConfiguration/xService
+      directives:
+        description: stop sshd
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Name: sshd
+        State: Stopped
+    - resource: xPSDesiredStateConfiguration/xService
+      directives:
+        description: start sshd
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Name: sshd
+        State: Running
+  configurationVersion: 0.2.0

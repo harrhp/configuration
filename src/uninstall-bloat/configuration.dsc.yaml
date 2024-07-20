@@ -1,0 +1,254 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  resources:
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        id: Microsoft.OneDrive
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        id: Microsoft.DevHome
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: news
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        id: 9WZDNCRFHVFW
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: bing search
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        id: 9NZBF4GT040C
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: weather
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        id: 9WZDNCRFJ3Q2
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: xbox
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        id: 9MV0B5HZVK9Z
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: Microsoft 365 (Office)
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        id: 9WZDNCRD29V9
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: notes
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        id: 9NBLGGH4QGHW
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: outlook
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        id: 9NRX63209R7B
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: todo
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        id: 9NBLGGH5R558
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: clock
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        id: 9WZDNCRFJ3PR
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: camera
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        id: 9WZDNCRFJBBG
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: feedback hub
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        id: 9NBLGGH4R32N
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: maps
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        id: 9WZDNCRDTBVB
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: sound recorder
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        id: 9WZDNCRFHWKN
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: media player
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        id: 9WZDNCRFJ3PT
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: movies
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        id: 9WZDNCRFJ3P2
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: quick assist
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        id: 9P7BP5VNWKX5
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: mail and calendar
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        id: 9WZDNCRFHVQM
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: power automate
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        id: 9NFTCH6J7FHV
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: clipchamp
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        id: 9P1J8S7CCWWT
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: teams
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        id: Microsoft.Teams
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: teams
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        id: Microsoft.Teams.Free
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: teams
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        id: Microsoft.Teams.Classic
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        description: teams
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        id: Microsoft.TeamsTxNDI
+    - resource: DSCR_AppxPackage/cAppxPackage
+      directives:
+        description: remove bloat
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        Name: Microsoft.XboxGameOverlay
+    - resource: DSCR_AppxPackage/cAppxPackage
+      directives:
+        description: remove bloat
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        Name: Microsoft.XboxSpeechToTextOverlay
+    - resource: DSCR_AppxPackage/cAppxPackage
+      directives:
+        description: remove bloat
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        Name: Microsoft.Xbox.TCUI
+    - resource: DSCR_AppxPackage/cAppxPackage
+      directives:
+        description: remove bloat
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        Name: Microsoft.XboxIdentityProvider
+    - resource: DSCR_AppxPackage/cAppxPackage
+      directives:
+        description: remove bloat
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        Name: Microsoft.549981C3F5F10
+    - resource: DSCR_AppxPackage/cAppxPackage
+      directives:
+        description: remove bloat
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        Name: Microsoft.People
+    - resource: DSCR_AppxPackage/cAppxPackage
+      directives:
+        description: remove bloat
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        Name: Microsoft.Getstarted
+    - resource: DSCR_AppxPackage/cAppxPackage
+      directives:
+        description: remove bloat
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        Name: Microsoft.XboxGamingOverlay
+    - resource: DSCR_AppxPackage/cAppxPackage
+      directives:
+        description: remove bloat
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        Name: Microsoft.MicrosoftSolitaireCollection
+    - resource: DSCR_AppxPackage/cAppxPackage
+      directives:
+        description: remove bloat
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        Name: Microsoft.YourPhone
+    - resource: DSCR_AppxPackage/cAppxPackage
+      directives:
+        description: remove bloat
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        Name: Microsoft.GetHelp
+  configurationVersion: 0.2.0

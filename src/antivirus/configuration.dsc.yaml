@@ -1,0 +1,209 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  resources:
+    # virus and thread protection
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: real-time protection
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection
+        ValueName: DisableRealtimeMonitoring
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: dev driver protection
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Real-Time Protection
+        ValueName: DisableAsyncScanOnOpen
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: cloud delivery protection
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet
+        ValueName: SpynetReporting
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable automatic sample submission
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet
+        ValueName: SubmitSamplesConsent
+        ValueData: 2
+        ValueType: dword
+        Force: true
+    # app and browser control
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: check apps and files
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\System
+        ValueName: EnableSmartScreen
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: check apps and files
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\System
+        ValueName: ShellSmartScreenLevel
+        ValueData: Warn
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge smart screen
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: SmartScreenEnabled
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: phishing protection
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\WTDS\Components
+        ValueName: ServiceEnabled
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: warn about malicious sites and apps
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\WTDS\Components
+        ValueName: NotifyMalicious
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable warn about password reuse
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\WTDS\Components
+        ValueName: NotifyPasswordReuse
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable warn about unsafe password storage
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\WTDS\Components
+        ValueName: NotifyUnsafeApp
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: disable automatically collect site or app content
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\WTDS\Components
+        ValueName: CaptureThreatWindow
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: potentially unwanted app blocking
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender
+        ValueName: PUAProtection
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: PUA block download
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: SmartScreenPuaEnabled
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: smartscreen for microsoft store
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppHost
+        ValueName: EnableWebContentEvaluation
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    # device security
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: memory integrity
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity
+        ValueName: Enabled
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: memory integrity
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        Key: HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity
+        ValueName: WasEnabledBy
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: kernel-mode hardware-enforced stack protection
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\KernelShadowStacks
+        ValueName: Enabled
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: kernel-mode hardware-enforced stack protection
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        Key: HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\KernelShadowStacks
+        ValueName: WasEnabledBy
+  configurationVersion: 0.2.0
