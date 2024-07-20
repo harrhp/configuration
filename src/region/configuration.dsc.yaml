@@ -1,0 +1,410 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  resources:
+    - resource: ComputerManagementDsc/TimeZone
+      directives:
+        description: set time zone
+        allowPrerelease: true
+      settings:
+        IsSingleInstance: yes
+        TimeZone: Russian Standard Time
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: set location
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\Geo
+        ValueName: Name
+        ValueData: NO # Norway
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: set location
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\Geo
+        ValueName: Nation
+        ValueData: 177 # Norway
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: Locale
+        ValueData: "00000419"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: LocaleName
+        ValueData: "ru-RU"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: s1159
+        ValueData: ""
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: s2359
+        ValueData: ""
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: sCurrency
+        ValueData: "₽"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: sDate
+        ValueData: "."
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: sDecimal
+        ValueData: ","
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: sGrouping
+        ValueData: "3;0"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: sLanguage
+        ValueData: "RUS"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: sList
+        ValueData: ";"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: sLongDate
+        ValueData: "d MMMM yyyy 'г.'"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: sMonDecimalSep
+        ValueData: ","
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: sMonGrouping
+        ValueData: "3;0"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: sMonThousandSep
+        ValueData: " "
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: sNativeDigits
+        ValueData: "0123456789"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: sNegativeSign
+        ValueData: "-"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: sPositiveSign
+        ValueData: ""
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: sShortDate
+        ValueData: "dd.MM.yyyy"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: sThousand
+        ValueData: " "
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: sTime
+        ValueData: ":"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: sTimeFormat
+        ValueData: "H:mm:ss"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: sShortTime
+        ValueData: "H:mm"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: sYearMonth
+        ValueData: "MMMM yyyy"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: iCalendarType
+        ValueData: "1"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: iCountry
+        ValueData: "7"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: iCurrDigits
+        ValueData: "2"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: iCurrency
+        ValueData: "3"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: iDate
+        ValueData: "1"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: iDigits
+        ValueData: "2"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: NumShape
+        ValueData: "1"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: iFirstDayOfWeek
+        ValueData: "0"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: iFirstWeekOfYear
+        ValueData: "2"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: iLZero
+        ValueData: "1"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: iMeasure
+        ValueData: "0"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: iNegCurr
+        ValueData: "8"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: iNegNumber
+        ValueData: "1"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: iPaperSize
+        ValueData: "9"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: iTime
+        ValueData: "1"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: iTimePrefix
+        ValueData: "0"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\
+        ValueName: iTLZero
+        ValueData: "0"
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\🌎🌏🌍
+        ValueName: Calendar
+        ValueData: Gregorian
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKCU:\Control Panel\International\User Profile
+        ValueName: UserLocaleFromLanguageProfileOptOut
+        ValueData: 1
+        ValueType: DWord
+        Force: true
+  configurationVersion: 0.2.0

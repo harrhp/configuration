@@ -1,0 +1,164 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  resources:
+    - resource: Microsoft.Windows.Developer/Taskbar
+      directives:
+        description: Modify taskbar settings
+        allowPrerelease: true
+      settings:
+        Alignment: Left
+        HideLabelsMode: Always
+        SearchBoxMode: Hide
+        TaskViewButton: Hide
+        WidgetsButton: Hide
+        RestartExplorer: True
+    - resource: "xPSDesiredStateConfiguration/xRegistry"
+      directives:
+        description: "Open File Explorer to [This PC]"
+        allowPrerelease: true
+      settings:
+        Key: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+        ValueName: "LaunchTo"
+        ValueData: "1"
+        ValueType: "DWord"
+        Force: true
+        Ensure: "Present"
+    - resource: Microsoft.Windows.Developer/WindowsExplorer
+      directives:
+        description: Modify Windows Explorer settings
+        allowPrerelease: true
+      settings:
+        FileExtensions: Show
+        HiddenFiles: Show
+        ItemCheckBoxes: Hide
+        RestartExplorer: True
+    - resource: Microsoft.Windows.Developer/ShowSecondsInClock
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+    - resource: Microsoft.Windows.Developer/EnableDarkMode
+      directives:
+        description: light mode
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        RestartExplorer: true
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        allowPrerelease: true
+      settings:
+        id: Notepad++.Notepad++
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        allowPrerelease: true
+      settings:
+        id: "7zip.7zip"
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        allowPrerelease: true
+      settings:
+        id: gerardog.gsudo
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        allowPrerelease: true
+      settings:
+        id: AntibodySoftware.WizTree
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: git
+      directives:
+        allowPrerelease: true
+      settings:
+        id: Git.Git
+        source: winget
+    - resource: MyResources/File
+      directives:
+        description: configure git
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        SourcePath: ${WingetConfigRoot}/../../files/.gitconfig
+        DestinationPath: ~/.gitconfig
+      dependsOn:
+        - git
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: ohmyposh
+      directives:
+        allowPrerelease: true
+      settings:
+        id: JanDeDobbeleer.OhMyPosh
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: aliae
+      directives:
+        allowPrerelease: true
+      settings:
+        id: JanDeDobbeleer.Aliae
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: pwsh
+      directives:
+        allowPrerelease: true
+      settings:
+        id: Microsoft.PowerShell
+        source: winget
+    - resource: MyResources/File
+      directives:
+        description: configure pwsh profile
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        SourcePath: ${WingetConfigRoot}/../../files/Microsoft.PowerShell_profile.ps1
+        DestinationPath: ~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1
+      dependsOn:
+        - pwsh
+        - ohmyposh
+        - aliae
+    - resource: xPSDesiredStateConfiguration/xScript
+      directives:
+        description: reload path
+        allowPrerelease: true
+      settings:
+        GetScript: "state"
+        TestScript: $false
+        SetScript: $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path", "User");
+    - resource: xPSDesiredStateConfiguration/xScript
+      directives:
+        description: install fonts
+        allowPrerelease: true
+      settings:
+        GetScript: "state"
+        TestScript: $false
+        SetScript: oh-my-posh font install CascadiaCode
+      dependsOn:
+        - ohmyposh
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      id: wt
+      directives:
+        allowPrerelease: true
+      settings:
+        id: Microsoft.WindowsTerminal
+        source: winget
+      dependsOn:
+        - pwsh
+    - resource: MyResources/File
+      directives:
+        description: configure windows terminal
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        SourcePath: ${WingetConfigRoot}/../../files/windows-terminal-settings.json
+        DestinationPath: ~/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json
+      dependsOn:
+        - wt
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        allowPrerelease: true
+      settings:
+        id: Microsoft.OpenSSH.Beta
+        source: winget
+  configurationVersion: 0.2.0

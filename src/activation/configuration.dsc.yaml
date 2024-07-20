@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  resources:
+    - resource: xPSDesiredStateConfiguration/xScript
+      directives:
+        description: activate
+        allowPrerelease: true
+      settings:
+        GetScript: "state"
+        TestScript: |
+          $licenseStatus = Get-CimInstance SoftwareLicensingProduct -Filter "Name like 'Windows%'" | where { $_.PartialProductKey } | select -ExpandProperty LicenseStatus
+          $licenseStatus -eq 1
+        SetScript: |
+          & ([ScriptBlock]::Create((Invoke-RestMethod https://get.activated.win))) /KMS38
+  configurationVersion: 0.2.0

@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  resources:
+    - resource: MyResources/File
+      directives:
+        description: copy file content
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        SourcePath: ${WingetConfigRoot}/../../files/Microsoft.PowerShell_profile.ps1
+        DestinationPath: ~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1
+  configurationVersion: 0.2.0
