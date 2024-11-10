@@ -11,7 +11,13 @@ properties:
       directives:
         allowPrerelease: true
       settings:
-        id: Vivaldi.Vivaldi
+        id: Brave.Brave
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        allowPrerelease: true
+      settings:
+        id: Brave.BraveUpdater
         source: winget
     - resource: Microsoft.WinGet.DSC/WinGetPackage
       directives:
