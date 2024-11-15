@@ -60,5 +60,5 @@ properties:
         Ensure: Present
         Distro: UbuntuDev
         InstallLocation: ~/dev/wsl/distro/UbuntuDev
-        File: https://cloud-images.ubuntu.com/wsl/noble/current/ubuntu-noble-wsl-amd64-wsl.rootfs.tar.gz
+        File: https://cloud-images.ubuntu.com/wsl/noble/current/ubuntu-noble-wsl-amd64-ubuntu.rootfs.tar.gz
   configurationVersion: 0.2.0

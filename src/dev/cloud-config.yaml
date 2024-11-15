@@ -5,11 +5,15 @@
 package_update: true
 package_upgrade: true
 
-# bootcmd:
-# - |
-#   VERSION_ID=$(/usr/bin/bash -c 'source /etc/os-release && echo $VERSION_ID')
-#   wget -q -O /run/packages-microsoft-prod.deb https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb
-#   dpkg -i /run/packages-microsoft-prod.deb
+bootcmd:
+  - [
+      "cloud-init-per",
+      "once",
+      "microsoft-apt-source",
+      "bash",
+      "-c",
+      "source /etc/os-release && wget -q -O /run/packages-microsoft-prod.deb https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb && dpkg -i /run/packages-microsoft-prod.deb",
+    ]
 
 apt:
   sources:
@@ -26,7 +30,7 @@ packages:
   - docker-ce-cli
   - containerd.io
   - docker-compose-plugin
-  # - powershell
+  - powershell
   - unzip
   - wslu
   - dnsutils
@@ -83,11 +87,5 @@ write_files:
     defer: true
 
 runcmd:
-  - |
-    wget -q -O /run/libicu.deb https://launchpad.net/ubuntu/+archive/primary/+files/libicu70_70.1-2ubuntu1_amd64.deb
-    dpkg -i /run/libicu.deb
-  - |
-    wget -q -O /run/pwsh.deb https://github.com/PowerShell/PowerShell/releases/download/v7.4.5/powershell_7.4.5-1.deb_amd64.deb
-    dpkg -i /run/pwsh.deb
   - curl -s https://ohmyposh.dev/install.sh | bash -s
   - curl -s https://aliae.dev/install.sh | bash -s
