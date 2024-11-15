@@ -180,6 +180,13 @@ properties:
         allowPrerelease: true
       settings:
         Ensure: Absent
+        Name: Microsoft.Copilot
+    - resource: DSCR_AppxPackage/cAppxPackage
+      directives:
+        description: remove bloat
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
         Name: Microsoft.XboxGameOverlay
     - resource: DSCR_AppxPackage/cAppxPackage
       directives:
