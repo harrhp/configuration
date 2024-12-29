@@ -1,0 +1,640 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  resources:
+    ## profiles
+    # sign-in
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable sign-in
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: BrowserSignin
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable sign-in
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: NonRemovableProfileEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable sign-in
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: ImplicitSignInEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    # rewards
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable rewards
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: ShowMicrosoftRewards
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    # import
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable import on first run
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: AutoImportAtFirstRun
+        ValueData: 4
+        ValueType: dword
+        Force: true
+    # sharing
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable sharing data with windows
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: LocalBrowserDataShareEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    # payments
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge payment info
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: AutofillCreditCardEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable express checkout
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: EdgeWalletCheckoutEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    # passwords
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable password manager
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: PasswordManagerEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    # personal info
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable personal info
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: AutofillAddressEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable personal info
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: AutofillMembershipsEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    ## privacy, search and services
+    # delete browsing data
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge clear data on exit
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: ClearBrowsingDataOnExit
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    # privacy
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable query for payment methods
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: PaymentMethodQueryEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    # diagnostic data
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable all diagnostic data
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: DiagnosticData
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    # diagnostic data
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable search telemetry
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: Edge3PSerpTelemetryEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    # personalization and advertising
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable personalization and ads
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: PersonalizationReportingEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    # security
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable type protection
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: TyposquattingCheckerEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    # services
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable resolve navigational errors
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: ResolveNavigationErrorsUseWebService
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable suggesting similar sites
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: AlternateErrorPagesEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable shopping
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: EdgeShoppingAssistantEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable tab help
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: TabServicesEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable thumbnails in history
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: ShowHistoryThumbnails
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    # search
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge new tab search in address bar
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: NewTabPageSearchBox
+        ValueData: redirect
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge configure search providers
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: ManagedSearchEngines
+        ValueData: |
+          [
+            {
+              "allow_search_engine_discovery": true
+            },
+            {
+              "is_default": true,
+              "keyword": "d",
+              "name": "DuckDuckGo (Policy)",
+              "search_url": "https://duckduckgo.com/?q={searchTerms}",
+              "suggest_url": "https://duckduckgo.com/ac/?q={searchTerms}&type=list"
+            }
+          ]
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge enable search suggestions
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: SearchSuggestEnabled
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge enable search filters
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: SearchFiltersEnabled
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    ## appearance
+    # toolbar buttons
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable home
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: ShowHomeButton
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable collections
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: EdgeCollectionsEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable browser essentials button
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: PinBrowserEssentialsToolbarButton
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    # context menus
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable mini menu
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: QuickSearchShowMiniMenu
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    # customize browser
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable close multiple tabs confirmation
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: AskBeforeCloseEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    # mouse gesture
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable mouse gestures
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: MouseGestureEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    ## sidebar and copilot
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable sidebar
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: EdgeSidebarCustomizeEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable sidebar
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: HubsSidebarEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable sidebar
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: EdgeOpenInSidebarEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable sidebar
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: EdgeOpenInSidebarEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable sidebar
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: SearchInSidebarEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    ## start, home, new tab
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable quick links
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: NewTabPageQuickLinksEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable top sites
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: NewTabPageHideDefaultTopSites
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable content
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: NewTabPageContentEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable background
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: NewTabPageAllowedBackgroundTypes
+        ValueData: 3
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable new tab preload
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: NewTabPagePrerenderEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    ## cookies
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable new tab preload
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: BlockThirdPartyCookies
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable new tab preload
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: NetworkPredictionOptions
+        ValueData: 2
+        ValueType: dword
+        Force: true
+    ## languages
+    # writing assistance
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable text prediction
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: TextPredictionEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable spell check
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: SpellcheckEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    # share additional OS regional format
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge limited share os region
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: DefaultShareAdditionalOSRegionSetting
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    ## downloads
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable open office docs
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: DownloadDirectory
+        ValueData: C:\Users\${user_name}\Downloads
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable open office docs
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: QuickViewOfficeFilesEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    ## system and performance
+    # system
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable startup boost
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: StartupBoostEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable running in background
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: BackgroundModeEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    # developer tools
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable running in background
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: DeveloperToolsAvailability
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    ## other
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable first time setup
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: HideFirstRunExperience
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: edge disable pdf recommendation
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
+        ValueName: ShowPDFDefaultRecommendationsEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+  configurationVersion: 0.2.0

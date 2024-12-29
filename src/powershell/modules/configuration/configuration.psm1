@@ -16,6 +16,7 @@ enum Configuration {
   Sshd
   SelfSignedCert
   WindowsSettings
+  Edge
   Antivirus
   Printer
   UninstallBloat
@@ -103,6 +104,7 @@ function Install {
   $homeBaseConfigurations = (
     [Configuration]::SelfSignedCert,
     [Configuration]::WindowsSettings,
+    [Configuration]::Edge,
     [Configuration]::Antivirus,
     [Configuration]::BasePackages,
     [Configuration]::Sshd,
