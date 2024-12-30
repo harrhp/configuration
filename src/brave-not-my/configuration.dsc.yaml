@@ -1,0 +1,37 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  resources:
+    # settings - languages - preferred languages
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: brave ui language
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
+        ValueName: ApplicationLocaleValue
+        ValueData: ru-RU
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: brave website language
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave\ForcedLanguages
+        ValueName: 1
+        ValueData: ru-RU
+        Force: true
+    # settings - system - performance
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: brave enable memory saver
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
+        ValueName: MemorySaverModeSavings
+        ValueData: 2
+        ValueType: dword
+        Force: true
+  configurationVersion: 0.2.0

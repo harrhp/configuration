@@ -1,0 +1,172 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  resources:
+    # settings - appearance - toolbar
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: brave disable home button
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
+        ValueName: ShowHomeButton
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: brave disable ai
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
+        ValueName: BraveAIChatEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: brave disable vpn
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
+        ValueName: BraveVPNDisabled
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: brave show full url
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
+        ValueName: ShowFullUrlsInAddressBar
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    # settings - search engine
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: brave enable search suggestions
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
+        ValueName: SearchSuggestEnabled
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    # settings - extensions
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: brave configure extensions
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
+        ValueName: ExtensionSettings
+        ValueData: |
+          {
+            "nngceckbapebfimnlniiiahkandclblb": {
+              "installation_mode": "force_installed",
+              "update_url": "https://clients2.google.com/service/update2/crx",
+              "toolbar_pin": "force_pinned"
+            },
+            "bkdgflcldnnnapblkhphbgpggdiikppg": {
+              "installation_mode": "force_installed",
+              "update_url": "https://clients2.google.com/service/update2/crx",
+              "toolbar_pin": "force_pinned"
+            },
+            "mmioliijnhnoblpgimnlajmefafdfilb": {
+              "toolbar_pin": "force_pinned"
+            },
+            "mjbepbhonbojpoaenhckjocchgfiaofo": {
+              "installation_mode": "removed"
+            }
+          }
+        Force: true
+    # settings - autofill and passwords - password manager
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: brave disable password manager
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
+        ValueName: PasswordManagerEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    # settings - autofill and passwords - payment
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: brave disable payments
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
+        ValueName: AutofillCreditCardEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: brave disable query payment methods
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
+        ValueName: PaymentMethodQueryEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    # settings - autofill and passwords - addresses and more
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: brave disable addresses
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
+        ValueName: AutofillAddressEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    # settings - downloads
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: brave set default download directory
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
+        ValueName: DownloadDirectory
+        ValueData: C:\Users\${user_name}\Downloads
+        Force: true
+    # settings - system
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: brave disable running in background
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
+        ValueName: BackgroundModeEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    # rewards
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: brave disable rewards
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
+        ValueName: BraveRewardsDisabled
+        ValueData: 1
+        ValueType: dword
+        Force: true
+  configurationVersion: 0.2.0

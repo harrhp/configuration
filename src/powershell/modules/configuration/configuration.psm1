@@ -13,6 +13,8 @@ enum Device {
 enum Configuration {
   BasePackages = 1
   BaseHomePackages
+  Brave
+  BraveNotMy
   Sshd
   SelfSignedCert
   WindowsSettings
@@ -114,6 +116,7 @@ function Install {
 
   $homeConfigurations = $homeBaseConfigurations + (
     [Configuration]::BaseHomePackages,
+    [Configuration]::Brave,
     [Configuration]::Printer
   );
 
@@ -124,6 +127,7 @@ function Install {
   );
 
   $notMyDeviceConfigurations = $homeConfigurations + (
+    [Configuration]::BraveNotMy,
     [Configuration]::UacRequireCred
   );
 
