@@ -177,13 +177,17 @@ alias:
       };
       f
     type: git
-  - name: rsh
+  - name: rs
     value: >
       !f() {
         set -e -o pipefail;
-        git reset --hard "${1:-$(git db)}";
+        ref="${1:-$(git branch --show-current)}";
+        git fetch origin "$ref" && git reset --hard "origin/$ref";
       };
       f
+    type: git
+  - name: rsdb
+    value: "!git rs $(git db)"
     type: git
   - name: z
     value: "!git restore . && git clean -fd"
