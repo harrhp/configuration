@@ -540,8 +540,8 @@ class WslDistro {
           New-Item -ItemType Directory -Path $this.InstallLocation -Force;
           wsl --import $this.Distro (Resolve-Path $this.InstallLocation) $distroSourceFile
           TryFail;
-          $result = wsl -d $this.Distro cloud-init status --wait;
-          if ($result -notcontains "status: done") {
+          $result = wsl -d $this.Distro -u root cloud-init status --wait;
+          if ($result -notmatch "status: done") {
             throw "cloud init failed";
           }
         }
