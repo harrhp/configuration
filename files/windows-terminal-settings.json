@@ -155,6 +155,12 @@
       "type": "remainingProfiles"
     }
   ],
+  "disabledProfileSources": [
+    "Windows.Terminal.Wsl",
+    "Windows.Terminal.Azure",
+    "Windows.Terminal.PowershellCore",
+    "Windows.Terminal.SSH"
+  ],
   "profiles": {
     "defaults": {
       "bellStyle": "none",
@@ -171,13 +177,14 @@
         "icon": "ms-appx:///ProfileIcons/{574e775e-4f2a-5b96-ac1e-a2962a402336}.png",
         "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
         "hidden": false,
-        "name": "pwsh"
+        "name": "pwsh",
+        "startingDirectory": "~"
       },
       {
-        "commandline": "wsl -d UbuntuDev pwsh",
+        "commandline": "wsl -d UbuntuDev",
         "guid": "{22e51f07-52ff-4d5f-bf1d-4f2e8a59d851}",
         "hidden": false,
-        "icon": "ms-appx:///ProfileIcons/{9acb9455-ca41-5af7-950f-6bca1bc9722f}.png",
+        "icon": "https://assets.ubuntu.com/v1/cb22ba5d-favicon.png",
         "name": "UbuntuDev",
         "startingDirectory": "~"
       },
