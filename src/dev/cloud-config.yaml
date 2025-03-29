@@ -68,6 +68,16 @@ users:
     shell: /bin/pwsh
 
 write_files:
+  - path: /etc/systemd/system/docker.service.d/override.conf
+    content: |
+      [Service]
+      ExecStart=
+      ExecStart=/usr/bin/dockerd
+  - path: /etc/docker/daemon.json
+    content: |
+      {
+        "hosts": ["fd://", "tcp://0.0.0.0:2375"]
+      }
   - path: /etc/wsl.conf
     content: |
       [user]

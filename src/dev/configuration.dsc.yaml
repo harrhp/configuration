@@ -24,6 +24,12 @@ properties:
       settings:
         id: Microsoft.WSL
         source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        allowPrerelease: true
+      settings:
+        id: Docker.DockerCLI
+        source: winget
     - resource: DSCR_FileContent/IniFile
       directives:
         allowPrerelease: true
@@ -44,6 +50,16 @@ properties:
         Key: sparseVhd
         Value: "true"
         NewLine: LF
+    - resource: DSCR_FileContent/IniFile
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Path: "~/.wslconfig"
+        Section: general
+        Key: instanceIdleTimeout
+        Value: "-1"
+        NewLine: LF
     - resource: MyResources/File
       directives:
         description: UbuntuDev cloud-init
@@ -60,5 +76,5 @@ properties:
         Ensure: Present
         Distro: UbuntuDev
         InstallLocation: ~/dev/wsl/distro/UbuntuDev
-        File: https://cloud-images.ubuntu.com/wsl/noble/current/ubuntu-noble-wsl-amd64-ubuntu.rootfs.tar.gz
+        File: https://cdimages.ubuntu.com/ubuntu-wsl/noble/daily-live/current/noble-wsl-amd64.wsl
   configurationVersion: 0.2.0

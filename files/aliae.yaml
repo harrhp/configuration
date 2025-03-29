@@ -12,6 +12,10 @@ env:
   - name: BROWSER
     value: wslview
     if: hasCommand "wslview"
+  - name: DOCKER_HOST
+    value: tcp://localhost:2375
+    persist: true
+    if: and (match .OS "windows") (hasCommand "docker")
 script:
   - value: |
       oh-my-posh init --config $env:OHMYPOSH_CONFIG pwsh | Invoke-Expression
@@ -29,11 +33,6 @@ script:
         $wdevPath = Resolve-Path /mnt/c/Users/*/dev/;
         if($wdevPath) {
           New-Item -Path ~/wdev -Value $wdevPath -ItemType SymbolicLink -Force | Out-Null;
-        }
-
-        if(!(Get-Process | Where-Object -Property CommandLine -Like "/usr/bin/dbus-daemon*"))
-        {
-          dbus-launch true;
         }
       }
     if: and (match .OS "linux") (match .Shell "pwsh")
