@@ -156,6 +156,7 @@
     }
   ],
   "disabledProfileSources": [
+    "Microsoft.WSL",
     "Windows.Terminal.Wsl",
     "Windows.Terminal.Azure",
     "Windows.Terminal.PowershellCore",
@@ -181,7 +182,7 @@
         "startingDirectory": "~"
       },
       {
-        "commandline": "wsl -d UbuntuDev",
+        "commandline": "wsl -d UbuntuDev -e pwsh",
         "guid": "{22e51f07-52ff-4d5f-bf1d-4f2e8a59d851}",
         "hidden": false,
         "icon": "https://assets.ubuntu.com/v1/cb22ba5d-favicon.png",

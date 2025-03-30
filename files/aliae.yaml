@@ -1,4 +1,7 @@
 env:
+  - name: DOTFILES_REPO
+    value: https://github.com/harrhp/configuration.git
+    persist: true
   - name: OHMYPOSH_CONFIG
     value: https://raw.githubusercontent.com/harrhp/configuration/HEAD/files/custom.omp.json
   - name: GIT_SSH
@@ -6,7 +9,7 @@ env:
     persist: true
     if: match .OS "windows"
   - name: WSLENV
-    value: GIT_SSH/p
+    value: GIT_SSH/p:DOTFILES_REPO
     persist: true
     if: match .OS "windows"
   - name: BROWSER
