@@ -16,12 +16,6 @@ properties:
       directives:
         allowPrerelease: true
       settings:
-        id: JetBrains.Toolbox
-        source: winget
-    - resource: Microsoft.WinGet.DSC/WinGetPackage
-      directives:
-        allowPrerelease: true
-      settings:
         id: Microsoft.WSL
         source: winget
     - resource: Microsoft.WinGet.DSC/WinGetPackage
