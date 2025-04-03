@@ -6,14 +6,13 @@ package_update: true
 package_upgrade: true
 
 bootcmd:
-  - [
-      "cloud-init-per",
-      "once",
-      "microsoft-apt-source",
-      "bash",
-      "-c",
-      "source /etc/os-release && wget -q -O /run/packages-microsoft-prod.deb https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb && dpkg -i /run/packages-microsoft-prod.deb",
-    ]
+  - >
+    cloud-init-per once microsoft-apt-source
+    bash -c '
+    source /etc/os-release
+    && wget -q -O /run/packages-microsoft-prod.deb https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb
+    && dpkg -i /run/packages-microsoft-prod.deb
+    '
 
 apt:
   sources:
@@ -60,12 +59,12 @@ ca_certs:
       -----END CERTIFICATE-----
 
 users:
-  - name: skobka
+  - name: devbox
     groups:
       - sudo
       - docker
     sudo: ALL=(ALL) NOPASSWD:ALL
-    shell: /bin/pwsh
+    shell: /usr/bin/bash
 
 write_files:
   - path: /etc/systemd/system/docker.service.d/override.conf
@@ -81,21 +80,25 @@ write_files:
   - path: /etc/wsl.conf
     content: |
       [user]
-      default=skobka
+      default=devbox
 
       [boot]
       systemd=true
-  - path: /home/skobka/.config/powershell/Microsoft.PowerShell_profile.ps1
+  - path: /home/devbox/.config/powershell/Microsoft.PowerShell_profile.ps1
     source:
       uri: https://raw.githubusercontent.com/harrhp/configuration/main/files/Microsoft.PowerShell_profile.ps1
-    owner: skobka:skobka
+    owner: devbox:devbox
     defer: true
-  - path: /home/skobka/.gitconfig
+  - path: /home/devbox/.gitconfig
     source:
       uri: https://raw.githubusercontent.com/harrhp/configuration/main/files/.gitconfig
-    owner: skobka:skobka
+    owner: devbox:devbox
     defer: true
 
 runcmd:
-  - curl -s https://ohmyposh.dev/install.sh | bash -s
-  - curl -s https://aliae.dev/install.sh | bash -s
+  - >
+    curl -sfL https://github.com/devcontainers-extra/nanolayer/releases/latest/download/nanolayer-x86_64-unknown-linux-gnu.tgz
+    | tar fxvz - -C /usr/local/bin
+    && chmod 755 /usr/local/bin/nanolayer
+  - nanolayer install gh-release JanDeDobbeleer/aliae aliae
+  - nanolayer install gh-release JanDeDobbeleer/oh-my-posh oh-my-posh

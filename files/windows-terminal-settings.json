@@ -182,11 +182,11 @@
         "startingDirectory": "~"
       },
       {
-        "commandline": "wsl -d UbuntuDev -e pwsh",
+        "commandline": "wsl -d devbox -e pwsh",
         "guid": "{22e51f07-52ff-4d5f-bf1d-4f2e8a59d851}",
         "hidden": false,
         "icon": "https://assets.ubuntu.com/v1/cb22ba5d-favicon.png",
-        "name": "UbuntuDev",
+        "name": "devbox",
         "startingDirectory": "~"
       },
       {

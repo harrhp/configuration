@@ -1,7 +1,4 @@
 env:
-  - name: DOTFILES_REPO
-    value: https://github.com/harrhp/configuration.git
-    persist: true
   - name: OHMYPOSH_CONFIG
     value: https://raw.githubusercontent.com/harrhp/configuration/HEAD/files/custom.omp.json
   - name: GIT_SSH

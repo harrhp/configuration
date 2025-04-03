@@ -56,19 +56,19 @@ properties:
         NewLine: LF
     - resource: MyResources/File
       directives:
-        description: UbuntuDev cloud-init
+        description: devbox cloud-init
         allowPrerelease: true
       settings:
         Ensure: Present
         SourcePath: ${WingetConfigRoot}/cloud-config.yaml
-        DestinationPath: ~/.cloud-init/UbuntuDev.user-data
+        DestinationPath: ~/.cloud-init/devbox.user-data
     - resource: MyResources/WslDistro
       directives:
         description: install ubuntu
         allowPrerelease: true
       settings:
         Ensure: Present
-        Distro: UbuntuDev
-        InstallLocation: ~/dev/wsl/distro/UbuntuDev
+        Distro: devbox
+        InstallLocation: ~/dev/wsl/distro/devbox
         File: https://cdimages.ubuntu.com/ubuntu-wsl/noble/daily-live/current/noble-wsl-amd64.wsl
   configurationVersion: 0.2.0
