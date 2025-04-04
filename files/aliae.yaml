@@ -15,7 +15,7 @@ env:
   - name: DOCKER_HOST
     value: tcp://localhost:2375
     persist: true
-    if: and (match .OS "windows") (hasCommand "docker")
+    if: and (match .OS "windows") (hasCommand "docker") (not (hasCommand "docker-credential-desktop"))
 script:
   - value: |
       oh-my-posh init --config $env:OHMYPOSH_CONFIG pwsh | Invoke-Expression
