@@ -65,12 +65,17 @@ alias:
     value: "!git add . && git commit --amend --no-edit && git push origin HEAD --force"
     type: git
   - name: db
-    value: "!basename $(git symbolic-ref refs/remotes/origin/HEAD)"
+    value: >
+      !f() {
+        remote=$1;
+        basename "$(git symbolic-ref refs/remotes/${remote:-origin}/HEAD)";
+      };
+      f
     type: git
   - name: dbs
     value: >
       !f() {
-        set -e -o pipefail;
+        set -e;
         if [ "$#" -eq 1 ]; then
           branch="$1";
         elif [ "$#" -eq 2 ]; then
@@ -91,7 +96,7 @@ alias:
   - name: f
     value: >
       !f() {
-        set -e -o pipefail;
+        set -e;
         git fetch -u origin "$1:$1";
       };
       f
@@ -108,7 +113,7 @@ alias:
   - name: rb
     value: >
       !f() {
-        set -e -o pipefail;
+        set -e;
         git f "$1" && git rebase "$1";
       };
       f
@@ -128,7 +133,7 @@ alias:
   - name: m
     value: >
       !f() {
-        set -e -o pipefail;
+        set -e;
         git f "$1" && git merge "$1";
       };
       f
@@ -163,7 +168,7 @@ alias:
   - name: swf
     value: >
       !f() {
-        set -e -o pipefail;
+        set -e;
         base="${2:-$(git db)}";
         if git branch | grep "$1" >/dev/null; then
           git switch "$1";
@@ -179,7 +184,7 @@ alias:
   - name: rs
     value: >
       !f() {
-        set -e -o pipefail;
+        set -e;
         ref="${1:-$(git branch --show-current)}";
         git fetch origin "$ref" && git reset --hard "origin/$ref";
       };
@@ -224,7 +229,7 @@ alias:
   - name: bds
     value: >
       !f() {
-        set -e -o pipefail;
+        set -e;
         for branch in $(git branch | cut -c 3-); do
           if ! git fetch origin "$branch"; then
             git branch -D "$branch";
@@ -240,7 +245,7 @@ alias:
   - name: sync-fork
     value: >
       !f() {
-        set -e -o pipefail;
+        set -e;
         db="$(git db)";
         git fetch -fu upstream "$db:$db";
         git push origin "$db";
@@ -250,7 +255,7 @@ alias:
   - name: merge-fork
     value: >
       !f() {
-        set -e -o pipefail;
+        set -e;
         db=$(git db);
         git fetch upstream "$db";
         git switch "$db";
@@ -261,6 +266,50 @@ alias:
     type: git
   - name: x
     value: "update-index --chmod=+x"
+    type: git
+  - name: stpl
+    value: >
+      !f() {
+        set -e;
+        remote=${1:?remote must be set};
+        prefix=${2:-$remote};
+        branch=$(git branch --show-current);
+        git subtree pull --prefix "$prefix" "$remote" "$branch" --squash;
+      };
+      f
+    type: git
+  - name: stp
+    value: >
+      !f() {
+        set -e;
+        remote=${1:?remote must be set};
+        prefix=${2:-$remote};
+        branch=$(git branch --show-current);
+        git subtree push --prefix "$prefix" "$remote" "$branch";
+      };
+      f
+    type: git
+  - name: stpf
+    value: >
+      !f() {
+        set -e;
+        remote=${1:?remote must be set};
+        prefix=${2:-$remote};
+        branch=$(git branch --show-current);
+        git push $remote "$(git subtree split --prefix $prefix $branch):$branch" --force-with-lease;
+      };
+      f
+    type: git
+  - name: stpf2
+    value: >
+      !f() {
+        set -e;
+        remote=${1:?remote must be set};
+        prefix=${2:-$remote};
+        branch=$(git branch --show-current);
+        git push $remote "$(git subtree split --prefix $prefix $branch):$branch" --force;
+      };
+      f
     type: git
 
   # function
