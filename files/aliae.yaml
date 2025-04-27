@@ -6,7 +6,7 @@ env:
     persist: true
     if: match .OS "windows"
   - name: WSLENV
-    value: GIT_SSH/p:DOTFILES_REPO
+    value: GIT_SSH/p
     persist: true
     if: match .OS "windows"
   - name: BROWSER
@@ -14,7 +14,6 @@ env:
     if: hasCommand "wslview"
   - name: DOCKER_HOST
     value: tcp://localhost:2375
-    persist: true
     if: and (match .OS "windows") (hasCommand "docker") (not (hasCommand "docker-credential-desktop"))
 script:
   - value: |
