@@ -104,6 +104,6 @@ properties:
       directives:
         allowPrerelease: true
       settings:
-        id: Microsoft.OpenSSH.Beta
+        id: Microsoft.OpenSSH.Preview
         source: winget
   configurationVersion: 0.2.0
