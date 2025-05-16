@@ -12,9 +12,6 @@ env:
   - name: BROWSER
     value: wslview
     if: hasCommand "wslview"
-  - name: DOCKER_HOST
-    value: tcp://localhost:2375
-    if: and (match .OS "windows") (hasCommand "docker") (not (hasCommand "docker-credential-desktop"))
 script:
   - value: |
       oh-my-posh init --config $env:OHMYPOSH_CONFIG pwsh | Invoke-Expression

@@ -13,7 +13,7 @@ properties:
         Force: true
     - resource: FileContentDsc/ReplaceText
       directives:
-        description: deny ssh connections from localhost
+        description: set powershell subsystem
         allowPrerelease: true
       settings:
         Path: C:\ProgramData\ssh\sshd_config
@@ -27,24 +27,6 @@ properties:
       settings:
         Path: C:\ProgramData\ssh\sshd_config
         Search: (Match Group administrators(?:\r?\n.*)*?\r?\n)(\s+AuthorizedKeysFile .*)
-    - resource: FileContentDsc/ReplaceText
-      directives:
-        description: deny ssh connections from localhost
-        allowPrerelease: true
-      settings:
-        Path: C:\ProgramData\ssh\sshd_config
-        Search: DenyUsers \*@127\.0\.0\.1
-        Text: DenyUsers *@127.0.0.1
-        AllowAppend: true
-    - resource: FileContentDsc/ReplaceText
-      directives:
-        description: deny ssh connections from localhost
-        allowPrerelease: true
-      settings:
-        Path: C:\ProgramData\ssh\sshd_config
-        Search: DenyUsers \*@::1
-        Text: DenyUsers *@::1
-        AllowAppend: true
     - resource: FileContentDsc/ReplaceText
       directives:
         description: add authorized ssh keys
