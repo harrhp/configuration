@@ -1,4 +1,5 @@
 $ErrorActionPreference = "Stop";
+$PSNativeCommandUseErrorActionPreference = $true;
 Set-StrictMode -Version Latest;
 
 enum Device {
@@ -39,7 +40,6 @@ enum Configuration {
 function UpdateWinget {
   $wingetLatestVersion = (Invoke-RestMethod https://api.github.com/repos/microsoft/winget-cli/releases/latest).tag_name;
   $wingetActualVersion = winget --version;
-  TryFail;
   if ($wingetActualVersion -lt $wingetLatestVersion) {
     $packageUris = (
       "https://github.com/microsoft/microsoft-ui-xaml/releases/download/v2.8.6/Microsoft.UI.Xaml.2.8.x64.appx",
@@ -80,12 +80,6 @@ function MakeLocalModulesAvailable {
   else {
     $env:PSModulePath = $localModulesPath + ";" + $env:PSModulePath;
     Write-Host "PSModulePath modified" $env:PSModulePath
-  }
-}
-
-function TryFail {
-  if ($LASTEXITCODE -ne 0) {
-    throw "last command failed with $LASTEXITCODE";
   }
 }
 
@@ -167,10 +161,6 @@ function Install {
   }
   finally {
     $env:PSModulePath = $psModulePath;
-  }
-
-  if (Test-Path $PROFILE) {
-    . $PROFILE;
   }
 }
 
