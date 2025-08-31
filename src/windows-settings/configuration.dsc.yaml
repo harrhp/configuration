@@ -95,13 +95,20 @@ properties:
     # dns
     - resource: MyResources/DohServerTemplate
       directives:
-        description: setup doh template
+        description: setup doh template ipv6
         allowPrerelease: true
       settings:
         Ensure: Present
-        ServerAddress: 192.168.2.2
+        ServerAddress: fde8:f0:1a4b::2
         DohTemplate: https://dns.skobka.xyz/dns-query
         AutoUpgrade: true
+    - resource: MyResources/DohServerTemplate
+      directives:
+        description: setup doh template ipv6
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        ServerAddress: 192.168.2.2
     ## personaliztion
     # background
     - resource: xPSDesiredStateConfiguration/xRegistry
