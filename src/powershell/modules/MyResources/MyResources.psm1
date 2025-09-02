@@ -274,7 +274,7 @@ class WindowsDriver {
   [DscProperty(Mandatory)]
   [string] $Inf
 
-  [DscProperty(Mandatory)]
+  [DscProperty()]
   [string] $Uri
 
   hidden [string] $DriverName

@@ -1,48 +1,6 @@
 # yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
 properties:
   resources:
-    - resource: MyResources/WindowsDriver
-      directives:
-        description: install windows driver
-        allowPrerelease: true
-      settings:
-        Ensure: Present
-        Uri: https://github.com/harrhp/configuration/releases/download/additional-files/xerox.phaser.3020.xps.v4.driver.zip
-        Inf: sxj2xv4.inf
-        Version: "3.3.13.2"
-      id: install-windows-driver
-    - resource: MyResources/PrinterDriver
-      directives:
-        description: install printer drivers
-        allowPrerelease: true
-      settings:
-        Ensure: Present
-        Name: Xerox Phaser 3020 XPS
-      id: install-printer-driver
-      dependsOn:
-        - install-windows-driver
-    - resource: MyResources/PrinterPort
-      directives:
-        description: add printer port
-        allowPrerelease: true
-      settings:
-        Ensure: Present
-        Name: Xerox Phaser 3020 TCPIP
-        PrinterHostAddress: printer.skobka.xyz
-      id: install-printer-port
-    - resource: MyResources/Printer
-      directives:
-        description: add printer
-        allowPrerelease: true
-      settings:
-        Ensure: Present
-        Name: Xerox Phaser 3020
-        PortName: Xerox Phaser 3020 TCPIP
-        DriverName: Xerox Phaser 3020 XPS
-        Shared: true
-      dependsOn:
-        - install-printer-port
-        - install-printer-driver
     - resource: ComputerManagementDsc/Computer
       directives:
         description: rename computer

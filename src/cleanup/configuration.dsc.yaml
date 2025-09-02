@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  resources:
+    - resource: MyResources/Printer
+      directives:
+        description: remove old printer
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        ConnectionName: \\desktop\Xerox Phaser 3020
+    - resource: MyResources/DohServerTemplate
+      directives:
+        description: setup doh template ipv6
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        ServerAddress: 192.168.2.2
+    - resource: MyResources/Printer
+      directives:
+        description: add printer
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        Name: Xerox Phaser 3020
+    - resource: MyResources/PrinterPort
+      directives:
+        description: add printer port
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        Name: Xerox Phaser 3020 TCPIP
+    - resource: MyResources/PrinterDriver
+      directives:
+        description: install printer drivers
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        Name: Xerox Phaser 3020 XPS
+    - resource: MyResources/WindowsDriver
+      directives:
+        description: install windows driver
+        allowPrerelease: true
+      settings:
+        Ensure: Absent
+        Inf: sxj2xv4.inf
+        Version: "3.3.13.2"
+      id: install-windows-driver
+  configurationVersion: 0.2.0

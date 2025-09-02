@@ -35,6 +35,7 @@ enum Configuration {
   Lenovo
   Vostro
   Scratchpad
+  Cleanup
 }
 
 function UpdateWinget {
@@ -75,7 +76,7 @@ function MakeLocalModulesAvailable {
     }
     Write-Host "fixing local modules for win10";
     $modulePaths | Format-Table src, dest -Wrap -AutoSize;
-    $modulePaths | ForEach-Object { Robocopy.exe $_.src $_.dest /MIR; };
+    $modulePaths | ForEach-Object { $PSNativeCommandUseErrorActionPreference = $false; Robocopy.exe $_.src $_.dest /MIR; };
   }
   else {
     $env:PSModulePath = $localModulesPath + ";" + $env:PSModulePath;
