@@ -50,9 +50,19 @@ properties:
       settings:
         Ensure: Present
         Path: "~/.wslconfig"
-        Section: general
-        Key: instanceIdleTimeout
+        Section: wsl2
+        Key: vmIdleTimeout
         Value: "-1"
+        NewLine: LF
+    - resource: DSCR_FileContent/IniFile
+      directives:
+        allowPrerelease: true
+      settings:
+        Ensure: Present
+        Path: "~/.wslconfig"
+        Section: wsl2
+        Key: networkingMode
+        Value: mirrored
         NewLine: LF
     - resource: MyResources/File
       directives:
