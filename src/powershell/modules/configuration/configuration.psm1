@@ -27,6 +27,7 @@ enum Configuration {
   MyDevice
   UacNoPrompt
   UacRequireCred
+  Firewall
   Reconcile
   LightsOut
   Desktop
@@ -111,6 +112,7 @@ function Install {
 
   $homeConfigurations = $homeBaseConfigurations + (
     [Configuration]::BaseHomePackages,
+    [Configuration]::Firewall,
     [Configuration]::Brave,
     [Configuration]::Printer
   );

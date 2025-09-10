@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://aka.ms/configuration-dsc-schema/0.2
+properties:
+  resources:
+    - resource: NetworkingDsc/Firewall
+      directives:
+        description: Enable Inbound ICMP6
+      settings:
+        Name: CoreNet-Diag-ICMP6-EchoRequest-In
+        Ensure: Present
+        Enabled: True
+  configurationVersion: 0.2.0
