@@ -50,8 +50,8 @@ properties:
       settings:
         Ensure: Present
         Path: "~/.wslconfig"
-        Section: wsl2
-        Key: vmIdleTimeout
+        Section: general
+        Key: instanceIdleTimeout
         Value: "-1"
         NewLine: LF
     - resource: DSCR_FileContent/IniFile
