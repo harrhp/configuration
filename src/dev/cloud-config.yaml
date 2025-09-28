@@ -75,7 +75,8 @@ write_files:
   - path: /etc/docker/daemon.json
     content: |
       {
-        "hosts": ["fd://", "tcp://0.0.0.0:2375"]
+        "hosts": ["fd://", "tcp://[::]:2375"],
+        "ipv6": true
       }
   - path: /etc/wsl.conf
     content: |
@@ -94,6 +95,46 @@ write_files:
       uri: https://raw.githubusercontent.com/harrhp/configuration/main/files/.gitconfig
     owner: devbox:devbox
     defer: true
+  - path: /usr/local/sbin/ensure-link-local.sh
+    permissions: "0755"
+    content: |
+      #!/usr/bin/env bash
+      # Add deterministic IPv6 link-local (fe80::/64) to an interface if missing,
+      # using EUI-64 derived from the interface MAC address.
+
+      set -euo pipefail
+
+      eui64_from_mac() {
+        # Input: MAC like 02:42:ac:11:00:02
+        # Output: lower 64-bit IID like 0242:acff:fe11:0002 (U/L bit flipped)
+        local mac="$1"
+        local o1 o2 o3 o4 o5 o6 first
+        IFS=':' read -r o1 o2 o3 o4 o5 o6 <<<"$mac"
+        first=$(printf "%02x" $(( 0x$o1 ^ 0x02 )))  # flip U/L bit
+        printf "%s%s:%sff:fe%s:%s%s\n" "$first" "$o2" "$o3" "$o4" "$o5" "$o6"
+      }
+
+      ifname="$1"
+
+      # If already has any fe80::, exit
+      if ip -6 addr show dev "$ifname" | grep -q 'fe80::'; then
+        exit 0
+      fi
+
+      # Read MAC; if absent, exit
+      mac=$(cat "/sys/class/net/${ifname}/address" 2>/dev/null || true)
+      [ -n "$mac" ] || exit 0
+
+      iid=$(eui64_from_mac "$mac")
+
+      # Assign fe80::<EUI-64>/64
+      ip -6 addr add "fe80::${iid}/64" dev "$ifname" scope link || true
+
+  - path: /etc/udev/rules.d/99-docker-bridges-ipv6.rules
+    content: |
+      # Add IPv6 link-local to Docker bridges on creation (docker0, br-*)
+      ACTION=="add", SUBSYSTEM=="net", KERNEL=="docker0", RUN+="/usr/local/sbin/ensure-link-local.sh %k"
+      ACTION=="add", SUBSYSTEM=="net", KERNEL=="br-*",     RUN+="/usr/local/sbin/ensure-link-local.sh %k"
 
 runcmd:
   - >
