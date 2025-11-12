@@ -36,7 +36,7 @@ properties:
           $licenseStatus = Get-CimInstance SoftwareLicensingProduct -Filter "Name like 'Windows%'" | where { $_.PartialProductKey } | select -ExpandProperty LicenseStatus
           $licenseStatus -eq 1
         SetScript: |
-          & ([ScriptBlock]::Create((Invoke-RestMethod https://get.activated.win))) /KMS38
+          & ([ScriptBlock]::Create((Invoke-RestMethod https://get.activated.win))) /HWID
     # rdp
     - resource: xPSDesiredStateConfiguration/xRegistry
       directives:
