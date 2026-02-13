@@ -5,12 +5,6 @@ properties:
       directives:
         allowPrerelease: true
       settings:
-        id: Notepad++.Notepad++
-        source: winget
-    - resource: Microsoft.WinGet.DSC/WinGetPackage
-      directives:
-        allowPrerelease: true
-      settings:
         id: "7zip.7zip"
         source: winget
     - resource: Microsoft.WinGet.DSC/WinGetPackage

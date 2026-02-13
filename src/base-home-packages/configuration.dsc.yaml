@@ -5,6 +5,12 @@ properties:
       directives:
         allowPrerelease: true
       settings:
+        id: Notepad++.Notepad++
+        source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        allowPrerelease: true
+      settings:
         id: VideoLAN.VLC
         source: winget
     - resource: Microsoft.WinGet.DSC/WinGetPackage
