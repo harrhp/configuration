@@ -39,52 +39,6 @@ enum Configuration {
   Cleanup
 }
 
-function UpdateWinget {
-  $wingetLatestVersion = (Invoke-RestMethod https://api.github.com/repos/microsoft/winget-cli/releases/latest).tag_name;
-  $wingetActualVersion = winget --version;
-  if ($wingetActualVersion -lt $wingetLatestVersion) {
-    $packageUris = (
-      "https://github.com/microsoft/microsoft-ui-xaml/releases/download/v2.8.6/Microsoft.UI.Xaml.2.8.x64.appx",
-      "https://aka.ms/getwinget"
-    );
-
-    foreach ($packageUri in $packageUris) {
-      $packageMsix = New-TemporaryFile;
-      Start-BitsTransfer -Source $packageUri -Destination $packageMsix;
-      Add-AppxPackage $packageMsix -ForceApplicationShutdown;
-      Remove-Item $packageMsix -ErrorAction SilentlyContinue;
-    }
-  }
-
-  Write-Host "winget is up to date";
-}
-
-function MakeLocalModulesAvailable {
-  param (
-    [Parameter(Mandatory)]
-    [string]
-    $localModulesPath
-  )
-
-  if ([Environment]::OSVersion.Version -lt "10.0.22000") {
-    $wingetModulesPath = Join-Path $env:LOCALAPPDATA "Microsoft/WinGet/Configuration/Modules" -Resolve;
-    $modules = ("FileContentDsc", "MyResources");
-    $modulePaths = $modules | ForEach-Object {
-      [PSCustomObject]@{
-        src  = Join-Path $localModulesPath $_ -Resolve
-        dest = Join-Path $wingetModulesPath $_
-      }
-    }
-    Write-Host "fixing local modules for win10";
-    $modulePaths | Format-Table src, dest -Wrap -AutoSize;
-    $modulePaths | ForEach-Object { $PSNativeCommandUseErrorActionPreference = $false; Robocopy.exe $_.src $_.dest /MIR; };
-  }
-  else {
-    $env:PSModulePath = $localModulesPath + ";" + $env:PSModulePath;
-    Write-Host "PSModulePath modified" $env:PSModulePath
-  }
-}
-
 function Install {
   [CmdletBinding(DefaultParameterSetName = "Device")]
   param (
@@ -154,11 +108,8 @@ function Install {
   $configurationFiles | Write-Host;
 
   $localModulesPath = Join-Path $RepoRootPath "src/powershell/modules";
-
   $psModulePath = $env:PSModulePath;
-  MakeLocalModulesAvailable $localModulesPath;
-  UpdateWinget;
-
+  $env:PSModulePath = $localModulesPath + ";" + $env:PSModulePath;
   try {
     $configurationFiles | ForEach-Object { winget configure --verbose --accept-configuration-agreements --file $_; };
   }
