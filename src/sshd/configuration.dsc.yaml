@@ -22,13 +22,6 @@ properties:
         AllowAppend: true
     - resource: FileContentDsc/ReplaceText
       directives:
-        description: remove administrators_authorized_keys from sshd config
-        allowPrerelease: true
-      settings:
-        Path: C:\ProgramData\ssh\sshd_config
-        Search: (Match Group administrators(?:\r?\n.*)*?\r?\n)(\s+AuthorizedKeysFile .*)
-    - resource: FileContentDsc/ReplaceText
-      directives:
         description: add authorized ssh keys
         allowPrerelease: true
       settings:
@@ -42,6 +35,24 @@ properties:
         allowPrerelease: true
       settings:
         Path: ~/.ssh/authorized_keys
+        Search: (ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ84WNVv/t7imbmDoq9nB5lOUZ74pZ9//P8av2mgnUqE).*
+        Text: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ84WNVv/t7imbmDoq9nB5lOUZ74pZ9//P8av2mgnUqE laptop
+        AllowAppend: true
+    - resource: FileContentDsc/ReplaceText
+      directives:
+        description: add administrators authorized ssh keys
+        allowPrerelease: true
+      settings:
+        Path: C:\ProgramData\ssh\administrators_authorized_keys
+        Search: (ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMS4esNYZJPqbuGUbfCDUJnv1ao5Ws0MwJ2D9G/72eMe).*
+        Text: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMS4esNYZJPqbuGUbfCDUJnv1ao5Ws0MwJ2D9G/72eMe desktop2
+        AllowAppend: true
+    - resource: FileContentDsc/ReplaceText
+      directives:
+        description: add administrators authorized ssh keys
+        allowPrerelease: true
+      settings:
+        Path: C:\ProgramData\ssh\administrators_authorized_keys
         Search: (ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ84WNVv/t7imbmDoq9nB5lOUZ74pZ9//P8av2mgnUqE).*
         Text: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ84WNVv/t7imbmDoq9nB5lOUZ74pZ9//P8av2mgnUqE laptop
         AllowAppend: true
