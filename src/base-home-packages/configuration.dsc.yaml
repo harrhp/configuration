@@ -41,4 +41,10 @@ properties:
       settings:
         id: TheDocumentFoundation.LibreOffice
         source: winget
+    - resource: Microsoft.WinGet.DSC/WinGetPackage
+      directives:
+        allowPrerelease: true
+      settings:
+        id: Bitwarden.Bitwarden
+        source: winget
   configurationVersion: 0.2.0
