@@ -5,6 +5,7 @@ properties:
       directives:
         description: rename computer
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Name: vostro
   configurationVersion: 0.2.0

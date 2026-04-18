@@ -5,6 +5,7 @@ properties:
       directives:
         description: remove old printer
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Absent
         ConnectionName: \\desktop\Xerox Phaser 3020
@@ -12,6 +13,7 @@ properties:
       directives:
         description: setup doh template ipv6
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Absent
         ServerAddress: 192.168.2.2
@@ -19,6 +21,7 @@ properties:
       directives:
         description: add printer
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Absent
         Name: Xerox Phaser 3020
@@ -26,6 +29,7 @@ properties:
       directives:
         description: add printer port
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Absent
         Name: Xerox Phaser 3020 TCPIP
@@ -33,6 +37,7 @@ properties:
       directives:
         description: install printer drivers
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Absent
         Name: Xerox Phaser 3020 XPS
@@ -40,6 +45,7 @@ properties:
       directives:
         description: install windows driver
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Absent
         Inf: sxj2xv4.inf

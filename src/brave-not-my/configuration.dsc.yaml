@@ -6,6 +6,7 @@ properties:
       directives:
         description: brave ui language
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
@@ -16,6 +17,7 @@ properties:
       directives:
         description: brave website language
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave\ForcedLanguages
@@ -27,6 +29,7 @@ properties:
       directives:
         description: brave enable memory saver
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave

@@ -4,6 +4,7 @@ properties:
     - resource: Microsoft.Windows.Developer/UserAccessControl
       directives:
         allowPrerelease: true
+        securityContext: elevated
       settings:
         AdminConsentPromptBehavior: NoCredOrConsentRequired
   configurationVersion: 0.2.0

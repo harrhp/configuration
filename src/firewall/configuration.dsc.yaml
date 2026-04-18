@@ -4,6 +4,8 @@ properties:
     - resource: NetworkingDsc/Firewall
       directives:
         description: Enable Inbound ICMP6
+        allowPrerelease: true
+        securityContext: elevated
       settings:
         Name: CoreNet-Diag-ICMP6-EchoRequest-In
         Ensure: Present

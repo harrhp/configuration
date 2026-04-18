@@ -5,6 +5,7 @@ properties:
       directives:
         description: UAC ask credentials
         allowPrerelease: true
+        securityContext: elevated
       settings:
         AdminConsentPromptBehavior: RequireCred
   configurationVersion: 0.2.0

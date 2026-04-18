@@ -5,11 +5,13 @@ properties:
       directives:
         description: rename computer
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Name: desktop
     - resource: Microsoft.WinGet.DSC/WinGetPackage
       directives:
         allowPrerelease: true
+        securityContext: elevated
       settings:
         id: Docker.DockerDesktop
         source: winget

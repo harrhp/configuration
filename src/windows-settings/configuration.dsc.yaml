@@ -30,6 +30,7 @@ properties:
       directives:
         description: activate
         allowPrerelease: true
+        securityContext: elevated
       settings:
         GetScript: state
         TestScript: |
@@ -42,6 +43,7 @@ properties:
       directives:
         description: enable rdp
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services
@@ -53,6 +55,7 @@ properties:
       directives:
         description: enable rdp network level authentication
         allowPrerelease: true
+        securityContext: elevated
       settings:
         IsSingleInstance: yes
         Ensure: Present
@@ -61,6 +64,7 @@ properties:
       directives:
         description: enable rdp firewall rule
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Name: RemoteDesktop-Shadow-In-TCP
         Enabled: True
@@ -69,6 +73,7 @@ properties:
       directives:
         description: enable rdp firewall rule
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Name: RemoteDesktop-UserMode-In-TCP
         Enabled: True
@@ -77,6 +82,7 @@ properties:
       directives:
         description: enable rdp firewall rule
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Name: RemoteDesktop-UserMode-In-UDP
         Enabled: True
@@ -97,6 +103,7 @@ properties:
       directives:
         description: setup doh template ipv6
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         ServerAddress: fde8:f0:1a4b::2
@@ -150,6 +157,7 @@ properties:
       directives:
         description: disable lock screen status
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Dsh
@@ -173,6 +181,7 @@ properties:
       directives:
         description: hide recommended section
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer
@@ -184,6 +193,7 @@ properties:
       directives:
         description: disable show recently added apps
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer
@@ -280,6 +290,7 @@ properties:
       directives:
         description: configure install apps source
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer
@@ -292,6 +303,7 @@ properties:
       directives:
         description: disable security questions
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\System
@@ -324,6 +336,7 @@ properties:
       directives:
         description: disable text suggestions
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKCU:\Software\Microsoft\Input\Settings
@@ -381,6 +394,7 @@ properties:
       directives:
         description: disable personalized ads
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\AdvertisingInfo
@@ -403,6 +417,7 @@ properties:
       directives:
         description: disable tracking app launches
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\EdgeUI
@@ -448,6 +463,7 @@ properties:
       directives:
         description: disable online speech recognition
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\InputPersonalization
@@ -516,6 +532,7 @@ properties:
       directives:
         description: disable diagnostic data
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection
@@ -527,6 +544,7 @@ properties:
       directives:
         description: disable improve inking and typing
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\TextInput
@@ -549,6 +567,7 @@ properties:
       directives:
         description: disable diagnostic data viewer
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection
@@ -560,6 +579,7 @@ properties:
       directives:
         description: disable feedback
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\DataCollection
@@ -572,6 +592,7 @@ properties:
       directives:
         description: disable feedback
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\System
@@ -595,6 +616,7 @@ properties:
       directives:
         description: disable cloud search
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search
@@ -606,6 +628,7 @@ properties:
       directives:
         description: disable web search
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search
@@ -617,6 +640,7 @@ properties:
       directives:
         description: disable web search
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search
@@ -639,6 +663,7 @@ properties:
       directives:
         description: disable show search highlights
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search
@@ -651,6 +676,7 @@ properties:
       directives:
         description: turn off location
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\location

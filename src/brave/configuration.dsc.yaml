@@ -6,6 +6,7 @@ properties:
       directives:
         description: brave disable home button
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
@@ -17,6 +18,7 @@ properties:
       directives:
         description: brave disable ai
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
@@ -28,6 +30,7 @@ properties:
       directives:
         description: brave disable vpn
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
@@ -39,6 +42,7 @@ properties:
       directives:
         description: brave show full url
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
@@ -51,6 +55,7 @@ properties:
       directives:
         description: brave enable search suggestions
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
@@ -63,6 +68,7 @@ properties:
       directives:
         description: brave configure extensions
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
@@ -92,6 +98,7 @@ properties:
       directives:
         description: brave disable password manager
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
@@ -104,6 +111,7 @@ properties:
       directives:
         description: brave disable payments
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
@@ -115,6 +123,7 @@ properties:
       directives:
         description: brave disable query payment methods
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
@@ -127,6 +136,7 @@ properties:
       directives:
         description: brave disable addresses
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
@@ -139,6 +149,7 @@ properties:
       directives:
         description: brave set default download directory
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
@@ -150,6 +161,7 @@ properties:
       directives:
         description: brave disable running in background
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
@@ -162,6 +174,7 @@ properties:
       directives:
         description: brave disable rewards
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave

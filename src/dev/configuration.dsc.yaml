@@ -4,6 +4,7 @@ properties:
     - resource: Microsoft.Windows.Developer/DeveloperMode
       directives:
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
     - resource: Microsoft.WinGet.DSC/WinGetPackage

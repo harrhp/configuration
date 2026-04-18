@@ -5,16 +5,18 @@ properties:
       directives:
         description: set pwsh as default ssh shell
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\OpenSSH
         ValueName: DefaultShell
-        ValueData: 'C:\Program Files\PowerShell\7\pwsh.exe'
+        ValueData: "C:\\Program Files\\PowerShell\\7\\pwsh.exe"
         Force: true
     - resource: FileContentDsc/ReplaceText
       directives:
         description: set powershell subsystem
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Path: C:\ProgramData\ssh\sshd_config
         Search: Subsystem powershell .*
@@ -42,6 +44,7 @@ properties:
       directives:
         description: add administrators authorized ssh keys
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Path: C:\ProgramData\ssh\administrators_authorized_keys
         Search: (ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMS4esNYZJPqbuGUbfCDUJnv1ao5Ws0MwJ2D9G/72eMe).*
@@ -51,6 +54,7 @@ properties:
       directives:
         description: add administrators authorized ssh keys
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Path: C:\ProgramData\ssh\administrators_authorized_keys
         Search: (ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ84WNVv/t7imbmDoq9nB5lOUZ74pZ9//P8av2mgnUqE).*
@@ -60,6 +64,7 @@ properties:
       directives:
         description: stop sshd
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Name: sshd
@@ -68,6 +73,7 @@ properties:
       directives:
         description: start sshd
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Name: sshd

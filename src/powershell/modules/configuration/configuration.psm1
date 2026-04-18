@@ -39,6 +39,26 @@ enum Configuration {
   Cleanup
 }
 
+function MakeLocalModulesAvailable {
+  param (
+    [Parameter(Mandatory)]
+    [string]
+    $localModulesPath
+  )
+
+  $wingetModulesPath = Join-Path $env:LOCALAPPDATA "Microsoft/WinGet/Configuration/Modules" -Resolve;
+  $modules = ("FileContentDsc", "MyResources");
+  $modulePaths = $modules | ForEach-Object {
+    [PSCustomObject]@{
+      src  = Join-Path $localModulesPath $_ -Resolve
+      dest = Join-Path $wingetModulesPath $_
+    }
+  }
+  Write-Host "copying local modules to winget modules path";
+  $modulePaths | Format-Table src, dest -Wrap -AutoSize;
+  $modulePaths | ForEach-Object { $PSNativeCommandUseErrorActionPreference = $false; Robocopy.exe $_.src $_.dest /MIR; };
+}
+
 function Install {
   [CmdletBinding(DefaultParameterSetName = "Device")]
   param (
@@ -108,8 +128,10 @@ function Install {
   $configurationFiles | Write-Host;
 
   $localModulesPath = Join-Path $RepoRootPath "src/powershell/modules";
+
   $psModulePath = $env:PSModulePath;
-  $env:PSModulePath = $localModulesPath + ";" + $env:PSModulePath;
+  MakeLocalModulesAvailable $localModulesPath;
+
   try {
     $configurationFiles | ForEach-Object { winget configure --verbose --accept-configuration-agreements --file $_; };
   }

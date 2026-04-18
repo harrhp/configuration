@@ -4,6 +4,7 @@ properties:
     - resource: CertificateDsc/CertificateImport
       directives:
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Thumbprint: "75f5caebf2b81d953b56f8dd8430f39978214977"

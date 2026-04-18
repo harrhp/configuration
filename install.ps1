@@ -6,15 +6,10 @@ function TryFail {
   }
 }
 
-$isAdmin = [bool](([System.Security.Principal.WindowsIdentity]::GetCurrent()).groups -match "S-1-5-32-544");
 $gitDirPath = Join-Path $HOME "git";
 $repoDirPath = Join-Path $gitDirPath "configuration";
 
-if (!(Test-Path $gitDirPath) -and ![System.Security.Principal.WindowsIdentity]::GetCurrent().IsSystem -and $isAdmin) {
-  throw "run first pass not as admin"
-}
-
-if (!$isAdmin -and (Get-Command git -ErrorAction SilentlyContinue)) {
+if (Get-Command git -ErrorAction SilentlyContinue) {
   New-Item -Path $repoDirPath -ItemType Directory -Force;
   git -C $repoDirPath init;
   git -C $repoDirPath remote add origin https://github.com/harrhp/configuration.git;

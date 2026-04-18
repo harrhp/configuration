@@ -5,6 +5,7 @@ properties:
       directives:
         description: install windows driver
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Uri: https://github.com/harrhp/configuration/releases/download/additional-files/xerox.phaser.3020.xps.v4.driver.zip
@@ -15,6 +16,7 @@ properties:
       directives:
         description: install printer drivers
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Name: Xerox Phaser 3020 XPS
@@ -25,6 +27,7 @@ properties:
       directives:
         description: add printer port
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Name: Xerox Phaser 3020 TCPIP
@@ -34,6 +37,7 @@ properties:
       directives:
         description: add printer
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Name: Xerox Phaser 3020

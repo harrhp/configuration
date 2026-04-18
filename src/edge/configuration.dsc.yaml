@@ -7,6 +7,7 @@ properties:
       directives:
         description: edge disable sign-in
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -18,6 +19,7 @@ properties:
       directives:
         description: edge disable sign-in
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -29,6 +31,7 @@ properties:
       directives:
         description: edge disable sign-in
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -41,6 +44,7 @@ properties:
       directives:
         description: edge disable rewards
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -53,6 +57,7 @@ properties:
       directives:
         description: edge disable import on first run
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -65,6 +70,7 @@ properties:
       directives:
         description: edge disable sharing data with windows
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -77,6 +83,7 @@ properties:
       directives:
         description: edge payment info
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -88,6 +95,7 @@ properties:
       directives:
         description: edge disable express checkout
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -100,6 +108,7 @@ properties:
       directives:
         description: edge disable password manager
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -112,6 +121,7 @@ properties:
       directives:
         description: edge disable personal info
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -123,6 +133,7 @@ properties:
       directives:
         description: edge disable personal info
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -136,6 +147,7 @@ properties:
       directives:
         description: edge clear data on exit
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -148,6 +160,7 @@ properties:
       directives:
         description: edge disable query for payment methods
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -160,6 +173,7 @@ properties:
       directives:
         description: edge disable all diagnostic data
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -172,6 +186,7 @@ properties:
       directives:
         description: edge disable search telemetry
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -184,6 +199,7 @@ properties:
       directives:
         description: edge disable personalization and ads
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -196,6 +212,7 @@ properties:
       directives:
         description: edge disable type protection
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -208,6 +225,7 @@ properties:
       directives:
         description: edge disable resolve navigational errors
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -219,6 +237,7 @@ properties:
       directives:
         description: edge disable suggesting similar sites
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -230,6 +249,7 @@ properties:
       directives:
         description: edge disable shopping
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -241,6 +261,7 @@ properties:
       directives:
         description: edge disable tab help
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -252,6 +273,7 @@ properties:
       directives:
         description: edge disable thumbnails in history
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -264,6 +286,7 @@ properties:
       directives:
         description: edge new tab search in address bar
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -274,6 +297,7 @@ properties:
       directives:
         description: edge configure search providers
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -296,6 +320,7 @@ properties:
       directives:
         description: edge enable search suggestions
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -307,6 +332,7 @@ properties:
       directives:
         description: edge enable search filters
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -320,6 +346,7 @@ properties:
       directives:
         description: edge disable home
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -331,6 +358,7 @@ properties:
       directives:
         description: edge disable collections
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -342,6 +370,7 @@ properties:
       directives:
         description: edge disable browser essentials button
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -354,6 +383,7 @@ properties:
       directives:
         description: edge disable mini menu
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -366,6 +396,7 @@ properties:
       directives:
         description: edge disable close multiple tabs confirmation
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -378,6 +409,7 @@ properties:
       directives:
         description: edge disable mouse gestures
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -390,6 +422,7 @@ properties:
       directives:
         description: edge disable sidebar
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -401,6 +434,7 @@ properties:
       directives:
         description: edge disable sidebar
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -412,6 +446,7 @@ properties:
       directives:
         description: edge disable sidebar
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -423,6 +458,7 @@ properties:
       directives:
         description: edge disable sidebar
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -434,6 +470,7 @@ properties:
       directives:
         description: edge disable sidebar
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -446,6 +483,7 @@ properties:
       directives:
         description: edge disable quick links
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -457,6 +495,7 @@ properties:
       directives:
         description: edge disable top sites
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -468,6 +507,7 @@ properties:
       directives:
         description: edge disable content
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -479,6 +519,7 @@ properties:
       directives:
         description: edge disable background
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -490,6 +531,7 @@ properties:
       directives:
         description: edge disable new tab preload
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -502,6 +544,7 @@ properties:
       directives:
         description: edge disable new tab preload
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -513,6 +556,7 @@ properties:
       directives:
         description: edge disable new tab preload
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -526,6 +570,7 @@ properties:
       directives:
         description: edge disable text prediction
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -537,6 +582,7 @@ properties:
       directives:
         description: edge disable spell check
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -549,6 +595,7 @@ properties:
       directives:
         description: edge limited share os region
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -561,6 +608,7 @@ properties:
       directives:
         description: edge set default download directory
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -571,6 +619,7 @@ properties:
       directives:
         description: edge disable open office docs
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -584,6 +633,7 @@ properties:
       directives:
         description: edge disable startup boost
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -595,6 +645,7 @@ properties:
       directives:
         description: edge disable running in background
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -607,6 +658,7 @@ properties:
       directives:
         description: edge enable dev tools
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -619,6 +671,7 @@ properties:
       directives:
         description: edge disable first time setup
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge
@@ -630,6 +683,7 @@ properties:
       directives:
         description: edge disable pdf recommendation
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\Microsoft\Edge

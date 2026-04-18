@@ -5,6 +5,7 @@ properties:
       directives:
         description: add dsc scheduled task
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         TaskName: winget configure
@@ -24,6 +25,7 @@ properties:
       directives:
         description: fix dsc scheduled task
         allowPrerelease: true
+        securityContext: elevated
       settings:
         GetScript: state
         TestScript: $false

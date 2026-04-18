@@ -6,18 +6,11 @@ properties:
       directives:
         description: deploy powershell module
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Source: ${WingetConfigRoot}/../powershell/modules/LightsOut
         Destination: C:\Program Files\WindowsPowerShell\Modules\LightsOut
         Retry: 1
         Wait: 1
         AdditionalArgs: /MIR
-    - resource: DSCR_FileContent/TextFile
-      directives:
-        allowPrerelease: false
-      settings:
-        Ensure: Present
-        Path: "~/Desktop/lights out.bat"
-        Contents: "pwsh.exe -c LightsOut"
-        NewLine: CRLF
   configurationVersion: 0.2.0
