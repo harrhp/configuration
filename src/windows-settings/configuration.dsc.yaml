@@ -556,6 +556,7 @@ properties:
       directives:
         description: disable tailored experience
         allowPrerelease: true
+        securityContext: elevated
       settings:
         Ensure: Present
         Key: HKCU:\Software\Policies\Microsoft\Windows\CloudContent

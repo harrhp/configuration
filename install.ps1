@@ -1,5 +1,7 @@
 $ErrorActionPreference = "Stop";
 
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process -Force
+
 function TryFail {
   if ($LASTEXITCODE -ne 0) {
     throw "last command failed with $LASTEXITCODE";

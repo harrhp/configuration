@@ -46,7 +46,8 @@ function MakeLocalModulesAvailable {
     $localModulesPath
   )
 
-  $wingetModulesPath = Join-Path $env:LOCALAPPDATA "Microsoft/WinGet/Configuration/Modules" -Resolve;
+  $wingetModulesPath = Join-Path $env:LOCALAPPDATA "Microsoft/WinGet/Configuration/Modules";
+  New-Item -Path $wingetModulesPath -ItemType Directory -Force;
   $modules = ("FileContentDsc", "MyResources");
   $modulePaths = $modules | ForEach-Object {
     [PSCustomObject]@{
@@ -131,6 +132,9 @@ function Install {
 
   $psModulePath = $env:PSModulePath;
   MakeLocalModulesAvailable $localModulesPath;
+
+  winget configure --enable;
+  winget install --id Microsoft.VCRedist.2015+.x64 -e  -s winget;
 
   try {
     $configurationFiles | ForEach-Object { winget configure --verbose --accept-configuration-agreements --file $_; };
