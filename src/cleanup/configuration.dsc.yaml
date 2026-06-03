@@ -3,23 +3,6 @@ properties:
   resources:
     - resource: MyResources/Printer
       directives:
-        description: remove old printer
-        allowPrerelease: true
-        securityContext: elevated
-      settings:
-        Ensure: Absent
-        ConnectionName: \\desktop\Xerox Phaser 3020
-    - resource: MyResources/DohServerTemplate
-      directives:
-        description: setup doh template ipv6
-        allowPrerelease: true
-        securityContext: elevated
-      settings:
-        Ensure: Absent
-        ServerAddress: 192.168.2.2
-    - resource: MyResources/Printer
-      directives:
-        description: add printer
         allowPrerelease: true
         securityContext: elevated
       settings:
@@ -27,7 +10,6 @@ properties:
         Name: Xerox Phaser 3020
     - resource: MyResources/PrinterPort
       directives:
-        description: add printer port
         allowPrerelease: true
         securityContext: elevated
       settings:
@@ -35,7 +17,6 @@ properties:
         Name: Xerox Phaser 3020 TCPIP
     - resource: MyResources/PrinterDriver
       directives:
-        description: install printer drivers
         allowPrerelease: true
         securityContext: elevated
       settings:
@@ -43,12 +24,23 @@ properties:
         Name: Xerox Phaser 3020 XPS
     - resource: MyResources/WindowsDriver
       directives:
-        description: install windows driver
         allowPrerelease: true
         securityContext: elevated
       settings:
         Ensure: Absent
         Inf: sxj2xv4.inf
-        Version: "3.3.13.2"
-      id: install-windows-driver
+    - resource: MyResources/WindowsDriver
+      directives:
+        allowPrerelease: true
+        securityContext: elevated
+      settings:
+        Ensure: Absent
+        Inf: sxj2m.inf
+    - resource: MyResources/WindowsDriver
+      directives:
+        allowPrerelease: true
+        securityContext: elevated
+      settings:
+        Ensure: Absent
+        Inf: sxj2x.inf
   configurationVersion: 0.2.0

@@ -88,8 +88,7 @@ function Install {
   $homeConfigurations = $homeBaseConfigurations + (
     [Configuration]::BaseHomePackages,
     [Configuration]::Firewall,
-    [Configuration]::Brave,
-    [Configuration]::Printer
+    [Configuration]::Brave
   );
 
   $myDeviceConfigurations = $homeConfigurations + (

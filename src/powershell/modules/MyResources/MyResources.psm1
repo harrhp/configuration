@@ -280,6 +280,10 @@ class WindowsDriver {
   hidden [string] $DriverName
 
   [WindowsDriver] Get() {
+    if ($this.Ensure -eq [Ensure]::Present -and [string]::IsNullOrWhiteSpace($this.Version)) {
+      throw [System.ArgumentException]::new("Property 'Version' is mandatory when Ensure is 'Present'.")
+    }
+
     $state = [WindowsDriver]::new();
     $state.Version = $this.Version;
     $state.Inf = $this.Inf;
@@ -295,7 +299,7 @@ class WindowsDriver {
         Version      = $_.Groups[3].Value
       }
     }
-    | Where-Object { $_.Version -eq $this.Version -and $_.OriginalName -eq $originalName };
+    | Where-Object { (!$this.Version -or $_.Version -eq $this.Version) -and $_.OriginalName -eq $originalName };
 
     if ($windowsDriver) {
       $state.Ensure = [Ensure]::Present;
@@ -430,7 +434,7 @@ class Printer {
 
     $state.Name = $effectiveName;
 
-    $printer = Get-Printer -Name $effectiveName;
+    $printer = Get-Printer -Name $effectiveName -ErrorAction SilentlyContinue;
     if ($printer) {
       $state.Ensure = [Ensure]::Present;
       $state.PortName = $printer.PortName;
