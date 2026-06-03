@@ -134,7 +134,12 @@ function Install {
   MakeLocalModulesAvailable $localModulesPath;
 
   winget configure --enable;
-  winget install --id Microsoft.VCRedist.2015+.x64 -e  -s winget;
+
+  $vcPackage = "Microsoft.VCRedist.2015+.x64";
+  winget list --id $vcPackage --exact | Out-Null
+  if ($LASTEXITCODE -ne 0) {
+    winget install --id $vcPackage -e  -s winget;
+  }
 
   try {
     $configurationFiles | ForEach-Object { winget configure --verbose --accept-configuration-agreements --file $_; };
