@@ -50,6 +50,19 @@ properties:
         ValueData: 1
         ValueType: dword
         Force: true
+    # web3
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: brave disable wallet
+        allowPrerelease: true
+        securityContext: elevated
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
+        ValueName: BraveWalletDisabled
+        ValueData: 1
+        ValueType: dword
+        Force: true
     # settings - search engine
     - resource: xPSDesiredStateConfiguration/xRegistry
       directives:
