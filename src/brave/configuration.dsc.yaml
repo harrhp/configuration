@@ -50,6 +50,94 @@ properties:
         ValueData: 1
         ValueType: dword
         Force: true
+    # content
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: brave disable wayback machine
+        allowPrerelease: true
+        securityContext: elevated
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
+        ValueName: BraveWaybackMachineEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    # shields
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: brave enable block fingerprinting
+        allowPrerelease: true
+        securityContext: elevated
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
+        ValueName: DefaultBraveFingerprintingV2Setting
+        ValueData: 3
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: brave enable block third party cookies
+        allowPrerelease: true
+        securityContext: elevated
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
+        ValueName: BlockThirdPartyCookies
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    # private and security
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: brave disable language fingerprinting
+        allowPrerelease: true
+        securityContext: elevated
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
+        ValueName: BraveReduceLanguageEnabled
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    # private and security - data collection
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: brave disable analytics
+        allowPrerelease: true
+        securityContext: elevated
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
+        ValueName: BraveP3AEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: brave disable daily usage ping
+        allowPrerelease: true
+        securityContext: elevated
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
+        ValueName: BraveStatsPingEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: brave disable diagnostic report
+        allowPrerelease: true
+        securityContext: elevated
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
+        ValueName: MetricsReportingEnabled
+        ValueData: 0
+        ValueType: dword
+        Force: true
     # web3
     - resource: xPSDesiredStateConfiguration/xRegistry
       directives:
@@ -74,6 +162,18 @@ properties:
         Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
         ValueName: SearchSuggestEnabled
         ValueData: 1
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: brave disable web discovery
+        allowPrerelease: true
+        securityContext: elevated
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
+        ValueName: BraveWebDiscoveryEnabled
+        ValueData: 0
         ValueType: dword
         Force: true
     # settings - extensions

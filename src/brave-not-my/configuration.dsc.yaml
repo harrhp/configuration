@@ -33,6 +33,18 @@ properties:
       settings:
         Ensure: Present
         Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
+        ValueName: HighEfficiencyModeEnabled
+        ValueData: 1
+        ValueType: dword
+        Force: true
+    - resource: xPSDesiredStateConfiguration/xRegistry
+      directives:
+        description: brave set memory saver to maximum
+        allowPrerelease: true
+        securityContext: elevated
+      settings:
+        Ensure: Present
+        Key: HKLM:\SOFTWARE\Policies\BraveSoftware\Brave
         ValueName: MemorySaverModeSavings
         ValueData: 2
         ValueType: dword
